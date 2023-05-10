@@ -8,14 +8,14 @@ type Props = {
     adress?: string;
 };
 
-type Beach = {
+export type Beach = {
     // Should we add an ID here (to get rid of error msg in console)???
     info: BeachInfo,
     weather?: WeatherInfo
     // distance?: DistanceInfo
 }
 
-type BeachInfo = {
+export type BeachInfo = {
     name: string,
     area: string,
     accessibility: boolean,
@@ -23,13 +23,13 @@ type BeachInfo = {
     coordinateY: number
 };
 
-type WeatherInfo = {
+export type WeatherInfo = {
     temperature: number,
     windSpeed: number,
     weatherSymbol: number
 };
 
-type DistanceInfo = {
+export type DistanceInfo = {
     userPositionX: number,
     userPositionY: number,
     distanceToBeach: number
@@ -42,6 +42,7 @@ const BeachList = (props: Props) => {
     const [isPending, setIsPending] = useState<boolean>(false);
     const [openDataError, setOpenDataError] = useState("");
     const [smhiError, setSmhiError] = useState("");
+    const currentTime = new Date();
 
     // Runs at initial render
     useEffect (() => {
@@ -60,20 +61,14 @@ const BeachList = (props: Props) => {
 
     return (
         <div className="beach-list">
-            <h2>BeachList</h2>
+            <h2>Dina badplatsförslag</h2>
             {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
 
-            {!isPending && <div style={{ display: 'flex', gap: '20px', maxWidth: '100vw', flexWrap: 'wrap' }}>
+            {!isPending && <div className="beach-grid grid-cols-3">
                 {beachList && beachList.map((item) => (
-                    <div style={{ backgroundColor: 'whitesmoke', height: '200px', width: '200px' }}>
-                        <h4>{item.info.name}</h4>
-                        <h6>{item.info.area}</h6>
-                        <h6>{item.weather && item.weather.temperature}</h6>
-                        <h6>{item.weather && item.weather?.windSpeed}</h6>
-                        <h6>{item.weather && item.weather?.weatherSymbol}</h6>
-                    </div>
+                    <BeachCard beach={item} />
                 ))}
             </div>}
         </div>
