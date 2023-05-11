@@ -2,21 +2,34 @@ import { Link } from "react-router-dom";
 import MapLoader from "./MapLoader";
 import AddressForm from "./AddressForm";
 import { useState } from "react";
-import { LatLngLiteral } from "./types/googleTypes";
+import { LatLngLiteral, TravelMode } from "./types/googleTypes";
+import { useLoadScript } from "@react-google-maps/api";
+import { UserOptions } from "./types/beachTypes";
 
 function App() {
-    const [userPosition, setUserPosition] = useState<LatLngLiteral>({
+    const [origin, setOrigin] = useState<LatLngLiteral>({
         lat: 63.825,
         lng: 20.263,
     });
 
+    const [travelMode, setTravelMode] = useState<TravelMode>(
+        google.maps.TravelMode.BICYCLING
+    );
+
+    const userOptions: UserOptions = {
+        origin,
+        travelMode,
+    };
+
+    const options = JSON.stringify(userOptions);
+    console.log(options);
     return (
         <div className="App">
             <p>Start! Hitta din badplats</p>
 
-            <Link to={"/badplatser"}> Hitta badplatser </Link>
-            {/* <AddressForm /> */}
-            <MapLoader userPosition={userPosition} />
+            <Link to={"/badplatser/" + options}> Hitta badplatser </Link>
+            {/* <AddressForm userOptions={userOptions} />  */}
+            <MapLoader userPosition={origin} />
         </div>
     );
 }

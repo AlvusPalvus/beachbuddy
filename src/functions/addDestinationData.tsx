@@ -6,7 +6,36 @@ type Props = {
     userOptions: UserOptions;
 };
 
-const fetchTravelTime = (
+const addDestinationData = async ({ beachList, userOptions }: Props) => {
+    const res = await Promise.allSettled(
+        beachList.map(async (beach, i) => {
+            try {
+                const time = await fetchTravelTime(
+                    {
+                        lat: beach.info.coordinateX,
+                        lng: beach.info.coordinateY,
+                    },
+                    userOptions.origin,
+                    userOptions.travelMode
+                );
+                beach.travelInfo = {
+                    travelMode: userOptions.travelMode,
+                    travelTime: time,
+                };
+            } catch (error) {
+                beach.travelInfo = {
+                    travelMode: userOptions.travelMode,
+                    travelTime: "No data",
+                };
+            }
+            return beach;
+        })
+    );
+
+    return beachList;
+};
+
+export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
     travelMode: google.maps.TravelMode
@@ -23,17 +52,11 @@ const fetchTravelTime = (
                 },
                 (result, status) => {
                     if (status === "OK" && result) {
-                        //Behövde dela upp såhär av någon anledning, inte så snyggt men det funkar!
-                        const directions = result;
-                        const routes = directions.routes;
-                        const legs = routes[0].legs;
-                        const leg = legs[0];
-                        const time = leg.duration
-                            ? leg.duration?.text
-                            : "no data";
+                        const duration = result.routes[0].legs[0].duration;
+                        const time = duration ? duration?.text : "no data";
                         resolve(time);
                     } else {
-                        reject(new Error("No data"));
+                        resolve("No data");
                     }
                 }
             );
@@ -42,21 +65,6 @@ const fetchTravelTime = (
             reject(error);
         }
     });
-};
-
-const addDestinationData = async ({ beachList, userOptions }: Props) => {
-    beachList.map(async (beach, i) => {
-        const time = await fetchTravelTime(
-            { lat: beach.info.coordinateX, lng: beach.info.coordinateY },
-            userOptions.origin,
-            userOptions.travelMode
-        );
-        beach.travelInfo = {
-            travelMode: userOptions.travelMode,
-            travelTime: time,
-        };
-    });
-    return beachList;
 };
 
 export default addDestinationData;

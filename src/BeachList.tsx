@@ -3,12 +3,9 @@ import { getBeachData } from "./functions/getBeachData";
 import { addWeatherData } from "./functions/addWeatherData";
 import BeachCard from "./BeachCard";
 import addDestinationData from "./functions/addDestinationData";
-import {
-    DirectionsResult,
-    LatLngLiteral,
-    TravelMode,
-} from "./types/googleTypes";
+
 import { Beach, UserOptions } from "./types/beachTypes";
+import { useParams } from "react-router-dom";
 
 // Kan vi lägga alla typer i en egen fil också? :) JA!
 type Props = {};
@@ -17,47 +14,40 @@ const openDataUrl: string =
     "https://opendata.umea.se/api/records/1.0/search/?dataset=badplatser&q=&rows=33&facet=namn&facet=omrade&facet=handik_anp";
 
 const BeachList = (props: Props) => {
+    const params = useParams();
     const [beachList, setBeachList] = useState<Beach[]>();
     const [isPending, setIsPending] = useState<boolean>(false);
     const [openDataError, setOpenDataError] = useState("");
     const [smhiError, setSmhiError] = useState("");
-    const [userPosition, setUserPosition] = useState<LatLngLiteral>({
-        lat: 63.825,
-        lng: 20.263,
-    });
-    const userOptions: UserOptions = {
-        origin: {
-            lat: 63.825,
-            lng: 20.263,
-        },
-        travelMode: google.maps.TravelMode.BICYCLING,
-    };
-    //const [directions, setDirections] = useState<DirectionsResult>();
 
-    // Runs at initial render
+    const userOptions: UserOptions = JSON.parse(params.userOptions as string);
+
     useEffect(() => {
         const fetchAllData = async () => {
             const beachData: Beach[] = await getBeachData(
                 openDataUrl,
                 setOpenDataError
             );
+
             const beachWeatherData: Beach[] = await addWeatherData(
                 beachData,
                 setSmhiError
             );
 
-            const beachDistanceData = await addDestinationData({
-                beachList: beachWeatherData,
+            const beachListDone = await addDestinationData({
+                beachList: beachData,
                 userOptions: userOptions,
             });
-            setBeachList(beachDistanceData);
-            // Run a function here to get distance data! :)
+            console.log(beachData);
+
+            setBeachList(beachData);
+            setIsPending(false);
         };
 
         setIsPending(true);
         fetchAllData();
         // Simulates time to load screen, used for formatting loading text
-        setTimeout(() => setIsPending(false), 2000);
+        //setTimeout(() => setIsPending(false), 2000);
     }, []);
 
     return (
@@ -77,30 +67,11 @@ const BeachList = (props: Props) => {
                         maxWidth: "100vw",
                         flexWrap: "wrap",
                     }}
+                    className="flex"
                 >
                     {beachList &&
-                        beachList.map((item, i) => (
-                            <div
-                                style={{
-                                    backgroundColor: "whitesmoke",
-                                    height: "200px",
-                                    width: "200px",
-                                }}
-                                key={i}
-                            >
-                                <h4>{item.info.name}</h4>
-                                <h6>{item.info.area}</h6>
-                                <h6>
-                                    {item.weather && item.weather.temperature}
-                                </h6>
-                                <h6>
-                                    {item.weather && item.weather?.windSpeed}
-                                </h6>
-                                <h6>
-                                    {item.weather &&
-                                        item.weather?.weatherSymbol}
-                                </h6>
-                            </div>
+                        beachList.map((beach, i) => (
+                            <BeachCard beach={beach} key={i} />
                         ))}
                 </div>
             )}
