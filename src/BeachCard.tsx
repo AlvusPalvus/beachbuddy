@@ -5,7 +5,6 @@ type Props = {
 };
 
 const BeachCard = ({ beach }: Props) => {
-    console.log(beach.travelInfo);
     return (
         <div className="bg-blue-200 w-56 flex flex-col items-center p-4 rounded-md">
             <h2 className="text-xl">{beach.info.name}</h2>

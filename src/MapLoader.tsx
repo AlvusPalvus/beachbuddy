@@ -7,9 +7,6 @@ type Props = {
 };
 
 const MapLoader = ({ userPosition }: Props) => {
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
-    });
     let center = useMemo(
         () => ({ lat: userPosition.lat, lng: userPosition.lng }),
         [userPosition]
@@ -20,20 +17,20 @@ const MapLoader = ({ userPosition }: Props) => {
         return <div>mapLoader failed</div>;
     }
 
-    if (!isLoaded) {
-        return <div>Loading...</div>;
-    } else return Map(center);
+    return Map(center);
 };
 
 function Map(center: LatLngLiteral) {
-    console.log(center);
     return (
         <GoogleMap
             mapContainerClassName="mapContainer"
             zoom={10}
             center={center}
         >
-            <Marker position={center}></Marker>
+            <Marker
+                position={center}
+                onLoad={() => console.log("marker loaded")}
+            ></Marker>
         </GoogleMap>
     );
 }

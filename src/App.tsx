@@ -22,7 +22,6 @@ function App() {
     };
 
     const options = JSON.stringify(userOptions);
-    console.log(options);
     return (
         <div className="App">
             <p>Start! Hitta din badplats</p>
