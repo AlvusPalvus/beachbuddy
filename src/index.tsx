@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BeachList from "./BeachList";
+import GoogleLoader from "./GoogleLoader";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -15,13 +16,15 @@ const router = createBrowserRouter([
         element: <App />,
     },
     {
-        path: "/badplatser",
+        path: "/badplatser/:userOptions",
         element: <BeachList />,
     },
 ]);
 
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <GoogleLoader>
+            <RouterProvider router={router} />
+        </GoogleLoader>
     </React.StrictMode>
 );
