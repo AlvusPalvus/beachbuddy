@@ -1,25 +1,5 @@
 import axios from "axios";
-
-type Beach = {
-    // Should we add an ID here (to get rid of error msg in console)???
-    info: BeachInfo;
-    weather?: WeatherInfo;
-    // distance?: DistanceInfo
-};
-
-type BeachInfo = {
-    name: string;
-    area: string;
-    accessibility: boolean;
-    coordinateX: number;
-    coordinateY: number;
-};
-
-type WeatherInfo = {
-    temperature: number;
-    windSpeed: number;
-    weatherSymbol: number;
-};
+import { Beach, WeatherInfo } from "../types/beachTypes";
 
 export const addWeatherData = async (
     beachList: Beach[],
