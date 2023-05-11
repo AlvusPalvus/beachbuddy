@@ -26,7 +26,6 @@ const MapLoader = ({ userPosition }: Props) => {
 };
 
 function Map(center: LatLngLiteral) {
-    console.log(center);
     return (
         <GoogleMap
             mapContainerClassName="mapContainer"

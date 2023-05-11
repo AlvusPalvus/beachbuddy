@@ -61,7 +61,7 @@ export const fetchTravelTime = (
                 }
             );
         } catch (error) {
-            console.log(error);
+            console.error(error);
             reject(error);
         }
     });
