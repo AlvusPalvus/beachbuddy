@@ -1,4 +1,4 @@
-import { Beach, WeatherInfo, DistanceInfo } from './BeachList';
+import { Beach } from "./types/beachTypes";
 
 type Props = {
     beach: Beach;
