@@ -2,22 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&display=swap');
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: 'IBM Plex Sans', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.beach-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.beach-grid {
+  width: 65vw;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1em;
+  gap: 2em;
 }
 
-.mapContainer {
-    margin: auto;
-    width: 80%;
-    height: 60vh;
+.beach-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.beach-info-box {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1em;
+}
+.beach-info-icon-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.beach-button {
+  width: 100%;
+  background-color: var(--midnight);
+  text-align: center;
+  padding: 1em 0em;
+}
+
+@media only screen and (max-width: 80em) {
+  .beach-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

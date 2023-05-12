@@ -19,6 +19,7 @@ const BeachList = (props: Props) => {
     const [isPending, setIsPending] = useState<boolean>(false);
     const [openDataError, setOpenDataError] = useState("");
     const [smhiError, setSmhiError] = useState("");
+    const currentTime = new Date();
 
     const userOptions: UserOptions = JSON.parse(params.userOptions as string);
 
@@ -29,52 +30,36 @@ const BeachList = (props: Props) => {
                 setOpenDataError
             );
 
-            const beachWeatherData: Beach[] = await addWeatherData(
+            await addWeatherData(
                 beachData,
                 setSmhiError
             );
 
-            const beachListDone = await addDestinationData({
+            await addDestinationData({
                 beachList: beachData,
                 userOptions: userOptions,
             });
             console.log(beachData);
-
             setBeachList(beachData);
             setIsPending(false);
         };
 
         setIsPending(true);
         fetchAllData();
-        // Simulates time to load screen, used for formatting loading text
-        //setTimeout(() => setIsPending(false), 2000);
     }, []);
 
     return (
         <div className="beach-list">
-            <h2>BeachList</h2>
-            {isPending && (
-                <div className="loading-indicator">Laddar badplatser...</div>
-            )}
+            <h2>Dina badplatsförslag</h2>
+            {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
 
-            {!isPending && (
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "20px",
-                        maxWidth: "100vw",
-                        flexWrap: "wrap",
-                    }}
-                    className="flex"
-                >
-                    {beachList &&
-                        beachList.map((beach, i) => (
-                            <BeachCard beach={beach} key={i} />
-                        ))}
-                </div>
-            )}
+            {!isPending && <div className="beach-grid grid-cols-3">
+                {beachList && beachList.map((item) => (
+                    <BeachCard beach={item} />
+                ))}
+            </div>}
         </div>
     );
 };
