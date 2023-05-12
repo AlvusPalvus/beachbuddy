@@ -6,7 +6,7 @@ type Props = {
 
 const BeachCard = (props: Props) => {
     return(
-        <div className="beach-card">
+        <div className="beach-card text-white bg-dkblue">
             <h4 className="beach-name">{props.beach.info.name}</h4>
             <p className="beach-temperature">{props.beach.weather?.temperature} °C</p>
             <div className="beach-info-box">
@@ -21,7 +21,7 @@ const BeachCard = (props: Props) => {
                 </div>
                 <div className="beach-info-icon-group">
                     <p>d</p>
-                    <p>? km</p>
+                    <p>{props.beach.travelInfo?.travelTime}</p>
                 </div>
             </div>
             <div className="beach-button">Hitta hit</div>

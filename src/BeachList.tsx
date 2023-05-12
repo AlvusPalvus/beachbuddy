@@ -30,25 +30,22 @@ const BeachList = (props: Props) => {
                 setOpenDataError
             );
 
-            const beachWeatherData: Beach[] = await addWeatherData(
+            await addWeatherData(
                 beachData,
                 setSmhiError
             );
 
-            const beachListDone = await addDestinationData({
+            await addDestinationData({
                 beachList: beachData,
                 userOptions: userOptions,
             });
             console.log(beachData);
-
             setBeachList(beachData);
             setIsPending(false);
         };
 
         setIsPending(true);
         fetchAllData();
-        // Simulates time to load screen, used for formatting loading text
-        //setTimeout(() => setIsPending(false), 2000);
     }, []);
 
     return (

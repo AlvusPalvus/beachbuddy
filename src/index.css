@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&display=swap');
-:root {
-  --dk-blue: #004678;
-  --midnight: #002540;
-  --white: #F9F9F9;
-}
+
 body {
   margin: 0;
   font-family: 'IBM Plex Sans', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -34,7 +30,6 @@ code {
 }
 
 .beach-card {
-  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
