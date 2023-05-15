@@ -6,9 +6,9 @@ type Props = {
 
 const BeachCard = (props: Props) => {
     return(
-        <div className="beach-card text-white bg-dkblue">
-            <h4 className="beach-name">{props.beach.info.name}</h4>
-            <p className="beach-temperature">{props.beach.weather?.temperature} °C</p>
+        <div className="beach-card flex flex-col items-center justify-between text-white bg-dkblue rounded-xl">
+            <h4 className="beach-name text-base">{props.beach.info.name}</h4>
+            <p className="beach-temperature text-[1.5625em] font-semibold text-teal">{props.beach.weather?.temperature} °C</p>
             <div className="beach-info-box">
                 <div className="beach-info-icon-group">
                     <p>w</p>
@@ -24,7 +24,7 @@ const BeachCard = (props: Props) => {
                     <p>{props.beach.travelInfo?.travelTime}</p>
                 </div>
             </div>
-            <div className="beach-button">Hitta hit</div>
+            <div className="beach-button bg-midnight rounded-b-xl justify-self-stretch">Hitta hit</div>
         </div>
     );
 };
