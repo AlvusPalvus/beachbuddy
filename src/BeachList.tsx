@@ -7,7 +7,6 @@ import addDestinationData from "./functions/addDestinationData";
 import { Beach, UserOptions } from "./types/beachTypes";
 import { useParams } from "react-router-dom";
 
-// Kan vi lägga alla typer i en egen fil också? :) JA!
 type Props = {};
 
 const openDataUrl: string =
@@ -20,7 +19,6 @@ const BeachList = (props: Props) => {
     const [openDataError, setOpenDataError] = useState("");
     const [smhiError, setSmhiError] = useState("");
     const currentTime = new Date();
-
     const userOptions: UserOptions = JSON.parse(params.userOptions as string);
 
     useEffect(() => {
@@ -49,8 +47,8 @@ const BeachList = (props: Props) => {
     }, []);
 
     return (
-        <div className="beach-list">
-            <h2>Dina badplatsförslag</h2>
+        <div className="beach-list font-default flex flex-col items-center">
+            <p className="text-xl">Dina badplatsförslag</p>
             {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
