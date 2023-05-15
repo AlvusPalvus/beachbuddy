@@ -17,7 +17,7 @@ code {
     monospace;
 }
 .beach-grid {
-  width: 65vw;
+  width: 70vw;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2em;
