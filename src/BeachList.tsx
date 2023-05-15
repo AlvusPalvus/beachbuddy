@@ -48,7 +48,7 @@ const BeachList = (props: Props) => {
 
     return (
         <div className="beach-list font-default flex flex-col items-center">
-            <p className="text-xl">Dina badplatsförslag</p>
+            <p className="text-xl text-dkblue">Dina badplatsförslag</p>
             {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
