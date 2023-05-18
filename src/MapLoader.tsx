@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { FaUmbrellaBeach } from "react-icons/fa";
 
@@ -23,18 +23,16 @@ const MapLoader = ({ userPosition }: Props) => {
 };
 
 function Map(center: LatLngLiteral) {
-    console.log("here");
     return (
-        <GoogleMap
-            mapContainerClassName="mapContainer"
-            zoom={10}
-            center={center}
-        >
-            <Marker
-                position={center}
-                onLoad={() => console.log("marker loaded", center)}
-            ></Marker>
-        </GoogleMap>
+        <>
+            <GoogleMap
+                mapContainerClassName="mapContainer"
+                zoom={10}
+                center={center}
+            >
+                <Marker position={center}></Marker>
+            </GoogleMap>
+        </>
     );
 }
 
