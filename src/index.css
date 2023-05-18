@@ -31,7 +31,7 @@ code {
 .beach-info-box {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1em;
+    gap: 1.6em;
 }
 .beach-info-icon-group {
     display: flex;
@@ -41,7 +41,14 @@ code {
 .beach-button {
     width: 100%;
     text-align: center;
-    padding: 1em 0em;
+    padding: 1.3em 0em;
+}
+
+.card-divider {
+    border: 1px solid #E5F3F1;
+    height: 0px;
+    width: 75%;
+    opacity: 50%;
 }
 
 @media only screen and (max-width: 85em) {

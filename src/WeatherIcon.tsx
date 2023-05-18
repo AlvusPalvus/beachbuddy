@@ -40,7 +40,6 @@ const categorizeWeather = (symbol: number) => {
         case 13:
         case 14:
         case 15:
-        case 19:
         case 16:
         case 17:
         case 22:
@@ -68,14 +67,14 @@ export const WeatherIcon = (props: Props) => {
     const weatherCategory = categorizeWeather(props.symbol);
 
     return(
-        <div className="weatherIcon">
-            {weatherCategory === 1 && <BsSunFill size={80} />}
-            {weatherCategory === 2 && <BsFillCloudSunFill size={100} />}
-            {weatherCategory === 3 && <BsFillCloudsFill size={100} />}
-            {weatherCategory === 4 && <BsFillCloudDrizzleFill size={100} />}
-            {weatherCategory === 5 && <BsFillCloudSnowFill size={100} />}
-            {weatherCategory === 6 && <BsFillCloudLightningRainFill size={100} />}
-            {weatherCategory === 7 && <BsCloudHazeFill size={100} />}
+        <div>
+            {weatherCategory === 1 && <BsSunFill size={70} color="#E5F3F1" />}
+            {weatherCategory === 2 && <BsFillCloudSunFill size={85} color="#E5F3F1" />}
+            {weatherCategory === 3 && <BsFillCloudsFill size={85} color="#E5F3F1" />}
+            {weatherCategory === 4 && <BsFillCloudDrizzleFill size={85} color="#E5F3F1" />}
+            {weatherCategory === 5 && <BsFillCloudSnowFill size={85} color="#E5F3F1" />}
+            {weatherCategory === 6 && <BsFillCloudLightningRainFill size={85} color="#E5F3F1" />}
+            {weatherCategory === 7 && <BsCloudHazeFill size={85} color="#E5F3F1" />}
         </div>
     );
 }
