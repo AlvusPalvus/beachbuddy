@@ -1,5 +1,7 @@
-import React, { useMemo } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import React, { useMemo, useState } from "react";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { FaUmbrellaBeach } from "react-icons/fa";
+
 import { LatLngLiteral } from "./types/googleTypes";
 
 type Props = {
@@ -22,16 +24,15 @@ const MapLoader = ({ userPosition }: Props) => {
 
 function Map(center: LatLngLiteral) {
     return (
-        <GoogleMap
-            mapContainerClassName="mapContainer"
-            zoom={10}
-            center={center}
-        >
-            <Marker
-                position={center}
-                onLoad={() => console.log("marker loaded")}
-            ></Marker>
-        </GoogleMap>
+        <>
+            <GoogleMap
+                mapContainerClassName="mapContainer"
+                zoom={10}
+                center={center}
+            >
+                <Marker position={center}></Marker>
+            </GoogleMap>
+        </>
     );
 }
 

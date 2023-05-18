@@ -1,6 +1,7 @@
 import { LatLngLiteral, TravelMode } from "./googleTypes";
 
 export type UserOptions = {
+    inputAddress: string;
     origin: LatLngLiteral;
     travelMode: TravelMode;
 };
@@ -30,4 +31,5 @@ export type WeatherInfo = {
 export type TravelInfo = {
     travelMode: TravelMode;
     travelTime: string;
+    distance?: string;
 };
