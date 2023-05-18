@@ -30,4 +30,5 @@ export type WeatherInfo = {
 export type TravelInfo = {
     travelMode: TravelMode;
     travelTime: string;
+    distance?: string;
 };

@@ -10,7 +10,7 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
     const res = await Promise.allSettled(
         beachList.map(async (beach, i) => {
             try {
-                const time = await fetchTravelTime(
+                const res = await fetchTravelTime(
                     {
                         lat: beach.info.coordinateX,
                         lng: beach.info.coordinateY,
@@ -20,12 +20,14 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
                 );
                 beach.travelInfo = {
                     travelMode: userOptions.travelMode,
-                    travelTime: time,
+                    travelTime: res?.time,
+                    distance: res?.km,
                 };
             } catch (error) {
                 beach.travelInfo = {
                     travelMode: userOptions.travelMode,
                     travelTime: "No data",
+                    distance: "No data",
                 };
             }
             return beach;
@@ -39,7 +41,7 @@ export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
     travelMode: google.maps.TravelMode
-): Promise<string> => {
+): Promise<{ time: string; km: string }> => {
     return new Promise((resolve, reject) => {
         try {
             const service = new google.maps.DirectionsService();
@@ -53,10 +55,14 @@ export const fetchTravelTime = (
                 (result, status) => {
                     if (status === "OK" && result) {
                         const duration = result.routes[0].legs[0].duration;
+                        const distance = result.routes[0].legs[0].distance;
+
                         const time = duration ? duration?.text : "no data";
-                        resolve(time);
+                        const km = distance ? distance?.text : "no data";
+                        resolve({ time, km });
                     } else {
-                        resolve("No data");
+                        const errorMsg = "no data";
+                        resolve({ time: errorMsg, km: errorMsg });
                     }
                 }
             );

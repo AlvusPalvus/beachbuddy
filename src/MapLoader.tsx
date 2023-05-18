@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-// import { FaUmbrellaBeach } from "react-icons-dom/fa";
+import { FaUmbrellaBeach } from "react-icons/fa";
 
 import { LatLngLiteral } from "./types/googleTypes";
 
@@ -31,10 +31,6 @@ function Map(center: LatLngLiteral) {
             center={center}
         >
             <Marker
-                // icon={{
-                //     path: google.maps.SymbolPath.CIRCLE,
-                //     scale: 7,
-                // }}
                 position={center}
                 onLoad={() => console.log("marker loaded", center)}
             ></Marker>
