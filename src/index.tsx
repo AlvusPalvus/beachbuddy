@@ -22,9 +22,7 @@ const router = createBrowserRouter([
 ]);
 
 root.render(
-    <React.StrictMode>
-        <GoogleLoader>
-            <RouterProvider router={router} />
-        </GoogleLoader>
-    </React.StrictMode>
+    <GoogleLoader>
+        <RouterProvider router={router} />
+    </GoogleLoader>
 );

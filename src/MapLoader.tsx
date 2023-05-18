@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+// import { FaUmbrellaBeach } from "react-icons-dom/fa";
+
 import { LatLngLiteral } from "./types/googleTypes";
 
 type Props = {
@@ -21,6 +23,7 @@ const MapLoader = ({ userPosition }: Props) => {
 };
 
 function Map(center: LatLngLiteral) {
+    console.log("here");
     return (
         <GoogleMap
             mapContainerClassName="mapContainer"
@@ -28,8 +31,12 @@ function Map(center: LatLngLiteral) {
             center={center}
         >
             <Marker
+                // icon={{
+                //     path: google.maps.SymbolPath.CIRCLE,
+                //     scale: 7,
+                // }}
                 position={center}
-                onLoad={() => console.log("marker loaded")}
+                onLoad={() => console.log("marker loaded", center)}
             ></Marker>
         </GoogleMap>
     );
