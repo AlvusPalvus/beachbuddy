@@ -48,14 +48,14 @@ const BeachList = (props: Props) => {
 
     return (
         <div className="beach-list font-default flex flex-col items-center">
-            <p className="text-xl">Dina badplatsförslag</p>
+            <p className="text-xl text-dkblue">Dina badplatsförslag</p>
             {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
 
             {!isPending && <div className="beach-grid grid-cols-3">
-                {beachList && beachList.map((item) => (
-                    <BeachCard beach={item} />
+                {beachList && beachList.map((item, i) => (
+                    <BeachCard beach={item} key={i} />
                 ))}
             </div>}
         </div>
