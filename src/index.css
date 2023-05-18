@@ -16,10 +16,16 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+.beach-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .beach-grid {
     width: 65vw;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1em;
     gap: 2em;
 }
 .beach-info-box {
