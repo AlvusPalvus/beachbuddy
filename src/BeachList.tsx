@@ -54,8 +54,8 @@ const BeachList = (props: Props) => {
             {smhiError && <p>{smhiError}</p>}
 
             {!isPending && <div className="beach-grid grid-cols-3">
-                {beachList && beachList.map((item) => (
-                    <BeachCard beach={item} />
+                {beachList && beachList.map((item, i) => (
+                    <BeachCard beach={item} key={i} />
                 ))}
             </div>}
         </div>
