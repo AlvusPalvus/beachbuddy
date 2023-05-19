@@ -28,16 +28,13 @@ const BeachList = (props: Props) => {
                 setOpenDataError
             );
 
-            await addWeatherData(
-                beachData,
-                setSmhiError
-            );
+            await addWeatherData(beachData, setSmhiError);
 
             await addDestinationData({
                 beachList: beachData,
                 userOptions: userOptions,
             });
-            console.log(beachData);
+            // console.log(beachData);
             setBeachList(beachData);
             setIsPending(false);
         };
@@ -49,16 +46,23 @@ const BeachList = (props: Props) => {
     return (
         <div className="beach-list font-default flex flex-col items-center">
             <h2 className="text-xl text-dkblue">Dina badplatsförslag</h2>
-            <h3 className="text-lbold text-mdblue">{today.day} {today.date}, {today.time}</h3>
-            {isPending && <div className="loading-indicator">Laddar badplatser...</div>}
+            <h3 className="text-lbold text-mdblue">
+                {today.day} {today.date}, {today.time}
+            </h3>
+            {isPending && (
+                <div className="loading-indicator">Laddar badplatser...</div>
+            )}
             {openDataError && <p>{openDataError}</p>}
             {smhiError && <p>{smhiError}</p>}
 
-            {!isPending && <div className="beach-grid grid-cols-3">
-                {beachList && beachList.map((item, i) => (
-                    <BeachCard beach={item} key={i} />
-                ))}
-            </div>}
+            {!isPending && (
+                <div className="beach-grid grid-cols-3">
+                    {beachList &&
+                        beachList.map((item, i) => (
+                            <BeachCard beach={item} key={i} />
+                        ))}
+                </div>
+            )}
         </div>
     );
 };
