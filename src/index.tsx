@@ -5,6 +5,7 @@ import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BeachList from "./BeachList";
 import GoogleLoader from "./GoogleLoader";
+import { Header } from "./Header";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
 
 root.render(
     <GoogleLoader>
+        <Header />
         <RouterProvider router={router} />
     </GoogleLoader>
 );
