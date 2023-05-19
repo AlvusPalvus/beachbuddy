@@ -18,10 +18,12 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
                     userOptions.origin,
                     userOptions.travelMode
                 );
+                // Replace , with . in distance response
+                const formattedKm = res?.km.replace(",", ".");
                 beach.travelInfo = {
                     travelMode: userOptions.travelMode,
                     travelTime: res?.time,
-                    distance: res?.km,
+                    distance: formattedKm,
                 };
             } catch (error) {
                 beach.travelInfo = {
