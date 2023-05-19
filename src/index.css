@@ -7,8 +7,9 @@
 body {
     background: url("../public/Start.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    background-size: cover;
+    background-position: absolute;
+    background-attachment: fixed;
     margin: 0;
     font-family: "IBM Plex Sans", BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
