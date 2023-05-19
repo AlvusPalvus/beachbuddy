@@ -10,13 +10,16 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
     const res = await Promise.allSettled(
         beachList.map(async (beach, i) => {
             try {
+                const wait = false;
+                while (wait) {}
                 const res = await fetchTravelTime(
                     {
                         lat: beach.info.coordinateX,
                         lng: beach.info.coordinateY,
                     },
                     userOptions.origin,
-                    userOptions.travelMode
+                    userOptions.travelMode,
+                    wait
                 );
                 // Replace , with . in distance response
                 const formattedKm = res?.km.replace(",", ".");
@@ -42,7 +45,8 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
 export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
-    travelMode: google.maps.TravelMode
+    travelMode: google.maps.TravelMode,
+    wait: boolean
 ): Promise<{ time: string; km: string }> => {
     return new Promise((resolve, reject) => {
         try {
@@ -62,6 +66,11 @@ export const fetchTravelTime = (
                         const time = duration ? duration?.text : "no data";
                         const km = distance ? distance?.text : "no data";
                         resolve({ time, km });
+                    } else if (
+                        status == google.maps.DirectionsStatus.OVER_QUERY_LIMIT
+                    ) {
+                        wait = true;
+                        setTimeout("wait = true", 2000);
                     } else {
                         const errorMsg = "no data";
                         resolve({ time: errorMsg, km: errorMsg });
