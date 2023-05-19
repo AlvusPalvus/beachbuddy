@@ -1,6 +1,7 @@
 import { LatLngLiteral, TravelMode } from "./googleTypes";
 
 export type UserOptions = {
+    inputAddress: string;
     origin: LatLngLiteral;
     travelMode: TravelMode;
 };
