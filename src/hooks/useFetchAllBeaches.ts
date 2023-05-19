@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Beach, UserOptions } from "../types/beachTypes";
 import { getBeachData } from "../functions/getBeachData";
 import { addWeatherData } from "../functions/addWeatherData";
 import addDestinationData from "../functions/addDestinationData";
-import { LatLngLiteral, TravelMode } from "../types/googleTypes";
 
 type Props = {
     setIsPending: Function;
@@ -43,7 +42,7 @@ function useFetchAllBeaches({ setIsPending, setError, userOptions }: Props) {
 
         setIsPending(true);
         fetchAllData();
-    }, []);
+    });
     return beaches;
 }
 

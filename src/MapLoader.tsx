@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { FaUmbrellaBeach } from "react-icons/fa";
 
 import { LatLngLiteral } from "./types/googleTypes";
 
