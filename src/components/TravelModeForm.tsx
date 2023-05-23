@@ -1,16 +1,15 @@
 import React from "react";
 import { UserOptions } from "../types/beachTypes";
 import { TravelMode } from "../types/googleTypes";
+import { setTravelMode } from ".././features/userOptions/userOptionsSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-type Props = {
-    userOptions: UserOptions;
+type Props = {};
 
-    setTravelmode: React.Dispatch<React.SetStateAction<TravelMode>>;
-};
-
-const TravelModeForm = ({ userOptions, setTravelmode }: Props) => {
+const TravelModeForm = () => {
+    const dispatch = useAppDispatch();
     const handleInputChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setTravelmode(event.target.value as TravelMode);
+        dispatch(setTravelMode(event.target.value as TravelMode));
     };
     return (
         <form className="block max-w-sm rounded-lg bg-white p-6 ">
@@ -19,7 +18,9 @@ const TravelModeForm = ({ userOptions, setTravelmode }: Props) => {
                     Transportmedel:
                 </label>
                 <select
-                    value={userOptions.travelMode}
+                    value={useAppSelector(
+                        (state) => state.userOptions.travelMode
+                    )}
                     className=""
                     id="travelMode"
                     name="travelMode"

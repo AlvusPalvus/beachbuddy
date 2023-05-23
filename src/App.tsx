@@ -30,15 +30,8 @@ function App() {
             <h1 className="text-xl font-black">Start! Hitta din badplats</h1>
             <p>Ställ in din starposition och transportmedel</p>
             <div className="flex w-full justify-between ">
-                <AddressForm
-                    userOptions={userOptions}
-                    setInputAddress={setInputAddress}
-                    setOrigin={setOrigin}
-                />
-                <TravelModeForm
-                    userOptions={userOptions}
-                    setTravelmode={setTravelMode}
-                />
+                <AddressForm />
+                <TravelModeForm />
             </div>
 
             <MapLoader userPosition={origin} />

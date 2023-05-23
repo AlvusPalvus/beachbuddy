@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { UserOptions } from "../types/beachTypes";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import { LatLngLiteral } from "../types/googleTypes";
+import {
+    setInputAddress,
+    setOrigin,
+} from ".././features/userOptions/userOptionsSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-type Props = {
-    userOptions: UserOptions;
-    setInputAddress: React.Dispatch<React.SetStateAction<string>>;
-    setOrigin: React.Dispatch<React.SetStateAction<LatLngLiteral>>;
-};
+type Props = {};
 
-const AddressForm = ({ userOptions, setInputAddress, setOrigin }: Props) => {
+const AddressForm = () => {
     const [error, setError] = useState<string>("");
+    const dispatch = useAppDispatch();
+    let [formAddress, setFormAddress] = useState(
+        useAppSelector((state) => state.userOptions.inputAddress)
+    );
     const UmeBounds: google.maps.LatLngBoundsLiteral = {
         east: 17,
         north: 65,
@@ -21,34 +24,36 @@ const AddressForm = ({ userOptions, setInputAddress, setOrigin }: Props) => {
     const handleAddressInputChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setInputAddress(event.target.value);
+        setFormAddress(event.target.value);
     };
 
-    const fetchCoordinates = async (address: string) => {
+    const fetchCoordinates = async () => {
         try {
             const results = await getGeocode({
-                address: address + ", Umeå",
+                address: formAddress + ", Umeå",
                 bounds: UmeBounds,
             });
             const coordinates = await getLatLng(results[0]);
 
-            setInputAddress(results[0].formatted_address);
-            setOrigin(coordinates);
-            return true;
+            return {
+                coordinates,
+                formattedAddress: results[0].formatted_address,
+            };
         } catch (error) {
-            return false;
+            console.error("fetch failed");
         }
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (!isValidAddress(userOptions.inputAddress)) {
+        if (!isValidAddress(formAddress)) {
             setError("Please enter a valid address.");
         } else {
-            const success = await fetchCoordinates(userOptions.inputAddress);
-            if (!success) {
-                console.error("fetch failed");
+            const res = await fetchCoordinates();
+            if (res !== undefined) {
+                dispatch(setInputAddress(res.formattedAddress));
+                dispatch(setOrigin(res.coordinates));
             }
         }
     };
@@ -72,7 +77,7 @@ const AddressForm = ({ userOptions, setInputAddress, setOrigin }: Props) => {
                     type="text"
                     id="address"
                     name="address"
-                    value={userOptions.inputAddress}
+                    value={formAddress}
                     onChange={handleAddressInputChange}
                 />
                 {error && <p>{error}</p>}
