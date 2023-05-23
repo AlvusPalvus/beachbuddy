@@ -20,6 +20,9 @@ module.exports = {
                 lbold: ['1.25em', {
                     fontWeight: 700,
                 }],
+                basebold: ['1.125em', {
+                    fontWeight: 700,
+                }], // 18px
                 xl: ['2em', {
                     fontWeight: 700,
                 }] // 32px
@@ -28,6 +31,7 @@ module.exports = {
         fontFamily: {
             default: ["IBM Plex Sans", "sans serif"]
         },
+
     },
     plugins: [],
 };

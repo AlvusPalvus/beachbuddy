@@ -2,18 +2,18 @@ import { useState } from "react";
 import { getDate } from "./functions/getDate";
 import BeachCard from "./components/BeachCard";
 import { UserOptions } from "./types/beachTypes";
-import { useParams } from "react-router-dom";
 import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
+import { useAppSelector } from "./app/hooks";
 
 type Props = {};
 
 const BeachList = (props: Props) => {
-    const params = useParams();
     const [isPending, setIsPending] = useState<boolean>(false);
     const [error, setError] = useState("");
-
     const today = getDate();
-    const userOptions: UserOptions = JSON.parse(params.userOptions as string);
+    const userOptions: UserOptions = useAppSelector(
+        (state) => state.userOptions
+    );
 
     const beachList = useFetchAllBeaches({
         setIsPending,

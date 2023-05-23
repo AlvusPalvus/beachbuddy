@@ -5,8 +5,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BeachList from "./BeachList";
 import GoogleLoader from "./GoogleLoader";
 import { store } from "./app/store";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { Header } from "./components/Header";
+import BeachDetails from "./components/BeachDetails";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
         element: <App />,
     },
     {
-        path: "/badplatser/:userOptions",
+        path: "/badplatser",
         element: <BeachList />,
+    },
+    {
+        path: "/badplatser/:beachId",
+        element: <BeachDetails />,
     },
 ]);
 

@@ -1,30 +1,10 @@
 import { Link } from "react-router-dom";
 import MapLoader from "./components/MapLoader";
-import { useState } from "react";
-import { LatLngLiteral, TravelMode } from "./types/googleTypes";
-import { UserOptions } from "./types/beachTypes";
 import AddressForm from "./components/AddressForm";
 import TravelModeForm from "./components/TravelModeForm";
 import ReduxDemo from "./components/ReduxDemo";
 
 function App() {
-    const [origin, setOrigin] = useState<LatLngLiteral>({
-        lat: 63.825,
-        lng: 20.263,
-    });
-    const [inputAddress, setInputAddress] = useState<string>("");
-
-    const [travelMode, setTravelMode] = useState<TravelMode>(
-        google.maps.TravelMode.BICYCLING
-    );
-
-    const userOptions: UserOptions = {
-        inputAddress,
-        origin,
-        travelMode,
-    };
-
-    const options = JSON.stringify(userOptions);
     return (
         <div className="App flex flex-col gap-4 max-w-4xl m-auto ">
             <h1 className="text-5xl font-bold text-dkblue text-center"> Din guide till Umeås <span className="underline">bästa</span> badplatser</h1>
@@ -44,11 +24,11 @@ function App() {
                 <TravelModeForm />
             </div>
 
-            <MapLoader userPosition={origin} />
+            <MapLoader />
 
             <Link
                 className="px-6 py-4 w-fit self-center text-base font-bold text-white bg-midnight rounded-full hover:bg-cyan-600"
-                to={"/badplatser/" + options}
+                to={"/badplatser"}
             >
                 Hitta badplatser
             </Link>

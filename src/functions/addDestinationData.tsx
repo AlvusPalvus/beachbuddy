@@ -16,12 +16,10 @@ const addDestinationData = async ({
         beachList.map(async (beach, i) => {
             try {
                 const res = await fetchTravelTime(
-                    {
-                        lat: beach.info.coordinateX,
-                        lng: beach.info.coordinateY,
-                    },
+                    beach.info.position,
                     userOptions.origin,
-                    userOptions.travelMode
+                    userOptions.travelMode,
+                    0
                 );
                 // Replace , with . in distance response
                 const formattedKm = res?.km.replace(",", ".");
@@ -43,12 +41,14 @@ const addDestinationData = async ({
 export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
-    travelMode: TravelMode
+    travelMode: TravelMode,
+    index: number
 ): Promise<{ time: string; km: string }> => {
     return new Promise((resolve, reject) => {
         try {
             const service = new google.maps.DirectionsService();
-            let travelModeGoogle: google.maps.TravelMode = google.maps.TravelMode.BICYCLING
+            let travelModeGoogle: google.maps.TravelMode =
+                google.maps.TravelMode.BICYCLING;
             // Translating strings into google types
             switch (travelMode) {
                 case "BICYCLING":
@@ -76,22 +76,35 @@ export const fetchTravelTime = (
                         const duration = result.routes[0].legs[0].duration;
                         const distance = result.routes[0].legs[0].distance;
 
-                        const time = duration ? duration?.text : "no data";
-                        const km = distance ? distance?.text : "no data";
+                        const time = duration
+                            ? duration?.text
+                            : "Kunde inte hämtas";
+                        const km = distance
+                            ? distance?.text
+                            : "Kunde inte hämtas";
                         resolve({ time, km });
                     } else if (
                         status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
                     ) {
                         // VET EJ OM DETTA FUNKAR, lyckas inte framkalla errorn...
-                        console.log("Här ska over_query_limit hanteras");
+
                         setTimeout(async function () {
+                            const indexNext = index + 1;
+
                             const result = await fetchTravelTime(
                                 destination,
                                 origin,
-                                travelMode
+                                travelMode,
+                                indexNext
                             );
                             resolve(result);
-                        }, 2000);
+                        }, 1000);
+                    } else if (
+                        status === google.maps.DirectionsStatus.ZERO_RESULTS
+                    ) {
+                        const time = "Ej tillgängligt";
+                        const km = "Ej tillgängligt";
+                        resolve({ time, km });
                     }
                 }
             );
