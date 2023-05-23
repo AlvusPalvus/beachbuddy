@@ -1,13 +1,15 @@
 import { useMemo } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
-
 import { LatLngLiteral } from "../types/googleTypes";
+import { useAppSelector } from "../app/hooks";
 
 type Props = {
-    userPosition: LatLngLiteral;
+    destination?: LatLngLiteral;
 };
 
-const MapLoader = ({ userPosition }: Props) => {
+const MapLoader = (props: Props) => {
+    const userPosition = useAppSelector((state) => state.userOptions.origin);
+
     let center = useMemo(
         () => ({ lat: userPosition.lat, lng: userPosition.lng }),
         [userPosition]
@@ -18,10 +20,12 @@ const MapLoader = ({ userPosition }: Props) => {
         return <div>mapLoader failed</div>;
     }
 
-    return Map(center);
+    return Map(center, props.destination);
 };
 
-function Map(center: LatLngLiteral) {
+function Map(center: LatLngLiteral, destination?: LatLngLiteral) {
+    var iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+
     return (
         <>
             <GoogleMap
@@ -30,6 +34,12 @@ function Map(center: LatLngLiteral) {
                 center={center}
             >
                 <Marker position={center}></Marker>
+                {destination && (
+                    <Marker
+                        position={destination}
+                        icon={iconBase + "parking_lot_maps.png"}
+                    ></Marker>
+                )}
             </GoogleMap>
         </>
     );

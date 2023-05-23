@@ -18,8 +18,7 @@ export type BeachInfo = {
     area: string;
     accessibility: boolean;
     // Change this to a position object?
-    coordinateX: number;
-    coordinateY: number;
+    position: LatLngLiteral;
 };
 
 export type WeatherInfo = {
