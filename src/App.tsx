@@ -27,9 +27,19 @@ function App() {
     const options = JSON.stringify(userOptions);
     return (
         <div className="App flex flex-col gap-4 max-w-4xl m-auto ">
-            <h1 className="text-xl font-black">Start! Hitta din badplats</h1>
-            <p>Ställ in din starposition och transportmedel</p>
-            <div className="flex w-full justify-between ">
+            <h1 className="text-5xl font-bold text-dkblue text-center"> Din guide till Umeås <span className="underline">bästa</span> badplatser</h1>
+            <h2 className="text-lbold text-mdblue text-center">Oavsett om du vill simma, leka, <br className="md:hidden" />surfa<br className="md:block" /> eller bara äta en riktigt god glass!</h2>
+            <div className="container-lg bg-dkblue h-96 min-h-0 md:min-h-full">test
+            <div className="flex">
+    <div className="w-1/2 bg-blue-500">test</div>
+    <div className="w-1/2 bg-red-500">test</div>
+  </div>
+
+  <div className="mt-4 flex">
+    <div className="w-1/2 bg-green-500">test2</div>
+    <div className="w-1/2 bg-yellow-500">test2</div>
+  </div></div>
+            <div>
                 <AddressForm />
                 <TravelModeForm />
             </div>
@@ -43,6 +53,7 @@ function App() {
                 Hitta badplatser
             </Link>
             <ReduxDemo />
+            
         </div>
     );
 }

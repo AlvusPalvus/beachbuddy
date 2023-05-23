@@ -11,23 +11,23 @@ module.exports = {
                 white: "#F9F9F9",
                 teal: "#3EC0A9",
             },
+            fontSize: {
+                sm: '0.875em', // 14px
+                base: ['1.125em', {
+                    fontWeight: 600,
+                }], // 18px
+                l: '1.25em', // 20px
+                lbold: ['1.25em', {
+                    fontWeight: 700,
+                }],
+                xl: ['2em', {
+                    fontWeight: 700,
+                }] // 32px
+            }
         },
         fontFamily: {
             default: ["IBM Plex Sans", "sans serif"]
         },
-        fontSize: {
-            sm: '0.875em', // 14px
-            base: ['1.125em', {
-                fontWeight: 600,
-            }], // 18px
-            l: '1.25em', // 20px
-            lbold: ['1.25em', {
-                fontWeight: 700,
-            }],
-            xl: ['2em', {
-                fontWeight: 700,
-            }] // 32px
-        }
     },
     plugins: [],
 };

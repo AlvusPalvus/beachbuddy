@@ -67,6 +67,7 @@ const AddressForm = () => {
         <form
             className="block max-w-sm rounded-lg bg-white p-6 "
             onSubmit={handleSubmit}
+            
         >
             <div className=" mb-6">
                 <label className="font-semibold" htmlFor="address">
