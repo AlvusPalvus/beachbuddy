@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { UserOptions } from "../types/beachTypes";
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 import { LatLngLiteral } from "../types/googleTypes";
 
 type Props = {
@@ -14,13 +11,12 @@ type Props = {
 
 const AddressForm = ({ userOptions, setInputAddress, setOrigin }: Props) => {
     const [error, setError] = useState<string>("");
-    const {
-        ready,
-        value,
-        setValue,
-        suggestions: { status, data },
-        clearSuggestions,
-    } = usePlacesAutocomplete();
+    const UmeBounds: google.maps.LatLngBoundsLiteral = {
+        east: 17,
+        north: 65,
+        south: 59,
+        west: 23,
+    };
 
     const handleAddressInputChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -29,12 +25,13 @@ const AddressForm = ({ userOptions, setInputAddress, setOrigin }: Props) => {
     };
 
     const fetchCoordinates = async (address: string) => {
-        setValue(address, false);
-        clearSuggestions();
-
         try {
-            const results = await getGeocode({ address });
+            const results = await getGeocode({
+                address: address + ", Umeå",
+                bounds: UmeBounds,
+            });
             const coordinates = await getLatLng(results[0]);
+
             setInputAddress(results[0].formatted_address);
             setOrigin(coordinates);
             return true;

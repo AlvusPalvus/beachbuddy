@@ -6,6 +6,7 @@ import BeachList from "./BeachList";
 import GoogleLoader from "./GoogleLoader";
 import { store } from "./app/store";
 import { Provider } from 'react-redux';
+import { Header } from "./Header";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
 root.render(
     <GoogleLoader>
         <Provider store={store}>
+            <Header />
             <RouterProvider router={router} />
         </Provider>
     </GoogleLoader>

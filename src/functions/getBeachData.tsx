@@ -28,7 +28,10 @@ export const getBeachData = async (url: string, setOpenDataError: Function) => {
         })
         // Körs om Fel 204 - 404 ERROR
         .catch((error) => {
-            setOpenDataError(error.message);
+            setOpenDataError(
+                "Kunde inte hämta badplatser på grund av: ",
+                error.message
+            );
         });
     return beachArray;
 };
