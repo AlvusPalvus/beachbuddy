@@ -4,6 +4,7 @@ import BeachCard from "./BeachCard";
 import { UserOptions } from "./types/beachTypes";
 import { useParams } from "react-router-dom";
 import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
+import ReduxDemo from "./ReduxDemo";
 
 type Props = {};
 

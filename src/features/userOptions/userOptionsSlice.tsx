@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LatLngLiteral, TravelMode } from "../../types/googleTypes";
-import { RootState } from "../../app/store";
 
 export interface UserOptions {
     inputAddress: string,
@@ -10,7 +9,7 @@ export interface UserOptions {
 }
 
 const initialState: UserOptions = {
-    inputAddress: "hejsan",
+    inputAddress: "",
     origin: {
         lat: 63.825,
         lng: 20.263,
