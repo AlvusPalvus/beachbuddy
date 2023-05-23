@@ -36,7 +36,7 @@ function useFetchAllBeaches({ setIsPending, setError, userOptions }: Props) {
                 });
             }
             setBeaches(beachData);
-            setError(openDataError + smhiError + +mapsError);
+            setError(openDataError + smhiError + mapsError);
             setIsPending(false);
         };
 

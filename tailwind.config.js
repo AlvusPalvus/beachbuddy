@@ -20,6 +20,9 @@ module.exports = {
             base: ['1.125em', {
                 fontWeight: 600,
             }], // 18px
+            basebold: ['1.125em', {
+                fontWeight: 700,
+            }], // 18px
             l: '1.25em', // 20px
             lbold: ['1.25em', {
                 fontWeight: 700,
