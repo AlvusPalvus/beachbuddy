@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import MapLoader from "./MapLoader";
+import MapLoader from "./components/MapLoader";
 import { useState } from "react";
 import { LatLngLiteral, TravelMode } from "./types/googleTypes";
 import { UserOptions } from "./types/beachTypes";
 import AddressForm from "./components/AddressForm";
 import TravelModeForm from "./components/TravelModeForm";
-import ReduxDemo from "./ReduxDemo";
+import ReduxDemo from "./components/ReduxDemo";
 
 function App() {
     const [origin, setOrigin] = useState<LatLngLiteral>({

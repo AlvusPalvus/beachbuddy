@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 
-import { LatLngLiteral } from "./types/googleTypes";
+import { LatLngLiteral } from "../types/googleTypes";
 
 type Props = {
     userPosition: LatLngLiteral;
