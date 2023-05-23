@@ -4,22 +4,24 @@ import { LatLngLiteral } from "../types/googleTypes";
 type Props = {
     beachList: Beach[];
     userOptions: UserOptions;
+    setMapsError: Function;
 };
 
-const addDestinationData = async ({ beachList, userOptions }: Props) => {
-    const res = await Promise.allSettled(
+const addDestinationData = async ({
+    beachList,
+    userOptions,
+    setMapsError,
+}: Props) => {
+    await Promise.allSettled(
         beachList.map(async (beach, i) => {
             try {
-                const wait = false;
-                while (wait) {}
                 const res = await fetchTravelTime(
                     {
                         lat: beach.info.coordinateX,
                         lng: beach.info.coordinateY,
                     },
                     userOptions.origin,
-                    userOptions.travelMode,
-                    wait
+                    userOptions.travelMode
                 );
                 // Replace , with . in distance response
                 const formattedKm = res?.km.replace(",", ".");
@@ -29,11 +31,7 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
                     distance: formattedKm,
                 };
             } catch (error) {
-                beach.travelInfo = {
-                    travelMode: userOptions.travelMode,
-                    travelTime: "No data",
-                    distance: "No data",
-                };
+                setMapsError("Kunde inte hämta distans på grund av: ", error);
             }
             return beach;
         })
@@ -45,8 +43,7 @@ const addDestinationData = async ({ beachList, userOptions }: Props) => {
 export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
-    travelMode: google.maps.TravelMode,
-    wait: boolean
+    travelMode: google.maps.TravelMode
 ): Promise<{ time: string; km: string }> => {
     return new Promise((resolve, reject) => {
         try {
@@ -67,18 +64,22 @@ export const fetchTravelTime = (
                         const km = distance ? distance?.text : "no data";
                         resolve({ time, km });
                     } else if (
-                        status == google.maps.DirectionsStatus.OVER_QUERY_LIMIT
+                        status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
                     ) {
-                        wait = true;
-                        setTimeout("wait = true", 2000);
-                    } else {
-                        const errorMsg = "no data";
-                        resolve({ time: errorMsg, km: errorMsg });
+                        // VET EJ OM DETTA FUNKAR, lyckas inte framkalla errorn...
+                        console.log("Här ska over_query_limit hanteras");
+                        setTimeout(async function () {
+                            const result = await fetchTravelTime(
+                                destination,
+                                origin,
+                                travelMode
+                            );
+                            resolve(result);
+                        }, 2000);
                     }
                 }
             );
         } catch (error) {
-            console.error(error);
             reject(error);
         }
     });

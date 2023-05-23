@@ -29,7 +29,7 @@ export const addWeatherData = async (
 
             // Googles API funkade lite annorlunda så la den i en egen fil nu!
         } catch (error) {
-            setSmhiError(error);
+            setSmhiError("Kunde inte hämta vädret på grund av: ", error);
         }
     }
     return beachList;
