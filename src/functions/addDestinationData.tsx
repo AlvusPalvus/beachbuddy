@@ -1,5 +1,5 @@
 import { Beach, UserOptions } from "../types/beachTypes";
-import { LatLngLiteral } from "../types/googleTypes";
+import { LatLngLiteral, TravelMode } from "../types/googleTypes";
 
 type Props = {
     beachList: Beach[];
@@ -43,17 +43,33 @@ const addDestinationData = async ({
 export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
-    travelMode: google.maps.TravelMode
+    travelMode: TravelMode
 ): Promise<{ time: string; km: string }> => {
     return new Promise((resolve, reject) => {
         try {
             const service = new google.maps.DirectionsService();
+            let travelModeGoogle: google.maps.TravelMode = google.maps.TravelMode.BICYCLING
+            // Translating strings into google types
+            switch (travelMode) {
+                case "BICYCLING":
+                    travelModeGoogle = google.maps.TravelMode.BICYCLING;
+                    break;
+                case "DRIVING":
+                    travelModeGoogle = google.maps.TravelMode.DRIVING;
+                    break;
+                case "WALKING":
+                    travelModeGoogle = google.maps.TravelMode.WALKING;
+                    break;
+                case "TRANSIT":
+                    travelModeGoogle = google.maps.TravelMode.TRANSIT;
+                    break;
+            }
 
             service.route(
                 {
                     origin,
                     destination,
-                    travelMode,
+                    travelMode: travelModeGoogle,
                 },
                 (result, status) => {
                     if (status === "OK" && result) {

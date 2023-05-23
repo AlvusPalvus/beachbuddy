@@ -5,6 +5,7 @@ import { LatLngLiteral, TravelMode } from "./types/googleTypes";
 import { UserOptions } from "./types/beachTypes";
 import AddressForm from "./components/AddressForm";
 import TravelModeForm from "./components/TravelModeForm";
+import ReduxDemo from "./ReduxDemo";
 
 function App() {
     const [origin, setOrigin] = useState<LatLngLiteral>({
@@ -48,6 +49,7 @@ function App() {
             >
                 Hitta badplatser
             </Link>
+            <ReduxDemo />
         </div>
     );
 }
