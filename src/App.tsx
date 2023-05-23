@@ -1,30 +1,18 @@
 import { Link } from "react-router-dom";
 import MapLoader from "./components/MapLoader";
-import { useState } from "react";
-import { LatLngLiteral, TravelMode } from "./types/googleTypes";
-import { UserOptions } from "./types/beachTypes";
 import AddressForm from "./components/AddressForm";
 import TravelModeForm from "./components/TravelModeForm";
 import ReduxDemo from "./components/ReduxDemo";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import {
+    setInputAddress,
+    setOrigin,
+    setTravelMode,
+} from "./features/userOptions/userOptionsSlice";
 
 function App() {
-    const [origin, setOrigin] = useState<LatLngLiteral>({
-        lat: 63.825,
-        lng: 20.263,
-    });
-    const [inputAddress, setInputAddress] = useState<string>("");
+    const origin = useAppSelector((state) => state.userOptions.origin);
 
-    const [travelMode, setTravelMode] = useState<TravelMode>(
-        google.maps.TravelMode.BICYCLING
-    );
-
-    const userOptions: UserOptions = {
-        inputAddress,
-        origin,
-        travelMode,
-    };
-
-    const options = JSON.stringify(userOptions);
     return (
         <div className="App flex flex-col gap-4 max-w-4xl m-auto ">
             <h1 className="text-xl font-black">Start! Hitta din badplats</h1>
@@ -38,7 +26,7 @@ function App() {
 
             <Link
                 className="px-6 py-4 w-fit self-center text-base font-bold text-white bg-midnight rounded-full hover:bg-cyan-600"
-                to={"/badplatser/" + options}
+                to={"/badplatser"}
             >
                 Hitta badplatser
             </Link>

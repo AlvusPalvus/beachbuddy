@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BeachList from "./BeachList";
 import GoogleLoader from "./GoogleLoader";
 import { store } from "./app/store";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { Header } from "./components/Header";
 
 const root = ReactDOM.createRoot(
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         element: <App />,
     },
     {
-        path: "/badplatser/:userOptions",
+        path: "/badplatser",
         element: <BeachList />,
     },
 ]);
