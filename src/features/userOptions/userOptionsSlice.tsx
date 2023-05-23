@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LatLngLiteral, TravelMode } from "../../types/googleTypes";
+import { Beach } from "../../types/beachTypes";
 
 export interface UserOptions {
-    inputAddress: string,
-    origin: LatLngLiteral,
-    travelMode: TravelMode
+    inputAddress: string;
+    origin: LatLngLiteral;
+    travelMode: TravelMode;
+    chosenBeach?: Beach;
 }
 
 const initialState: UserOptions = {
@@ -14,8 +16,8 @@ const initialState: UserOptions = {
         lat: 63.825,
         lng: 20.263,
     },
-    travelMode: "BICYCLING"
-}
+    travelMode: "BICYCLING",
+};
 
 export const counterSlice = createSlice({
     name: "userOptions",
@@ -30,11 +32,15 @@ export const counterSlice = createSlice({
         setTravelMode: (state, action: PayloadAction<TravelMode>) => {
             state.travelMode = action.payload;
         },
+        setChosenBeach: (state, action: PayloadAction<Beach>) => {
+            state.chosenBeach = action.payload;
+        },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { setInputAddress, setOrigin, setTravelMode } = counterSlice.actions;
+export const { setInputAddress, setOrigin, setTravelMode, setChosenBeach } =
+    counterSlice.actions;
 
 // Export reducer
 export default counterSlice.reducer;

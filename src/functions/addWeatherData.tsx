@@ -7,8 +7,8 @@ export const addWeatherData = async (
 ) => {
     for (const beach of beachList) {
         // Format latitude and longitude for API call
-        const longitude = parseFloat(beach.info.coordinateY.toFixed(2));
-        const latitude = parseFloat(beach.info.coordinateX.toFixed(2));
+        const longitude = parseFloat(beach.info.position.lng.toFixed(2));
+        const latitude = parseFloat(beach.info.position.lat.toFixed(2));
         const url = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${longitude}/lat/${latitude}/data.json`;
 
         // Problemet var att den inte väntade på responsen innan nästa skickades,

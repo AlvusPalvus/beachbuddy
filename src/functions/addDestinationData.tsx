@@ -16,10 +16,7 @@ const addDestinationData = async ({
         beachList.map(async (beach, i) => {
             try {
                 const res = await fetchTravelTime(
-                    {
-                        lat: beach.info.coordinateX,
-                        lng: beach.info.coordinateY,
-                    },
+                    beach.info.position,
                     userOptions.origin,
                     userOptions.travelMode,
                     0

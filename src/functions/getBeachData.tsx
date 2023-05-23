@@ -16,8 +16,10 @@ export const getBeachData = async (url: string, setOpenDataError: Function) => {
                         beaches[i].fields.handik_anp === undefined
                             ? false
                             : true,
-                    coordinateX: beaches[i].fields.geo_point_2d[0],
-                    coordinateY: beaches[i].fields.geo_point_2d[1],
+                    position: {
+                        lat: beaches[i].fields.geo_point_2d[0],
+                        lng: beaches[i].fields.geo_point_2d[1],
+                    },
                 };
                 // Create beach object with fetched info
                 let beach: Beach = {

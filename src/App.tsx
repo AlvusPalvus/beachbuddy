@@ -22,7 +22,7 @@ function App() {
                 <TravelModeForm />
             </div>
 
-            <MapLoader userPosition={origin} />
+            <MapLoader />
 
             <Link
                 className="px-6 py-4 w-fit self-center text-base font-bold text-white bg-midnight rounded-full hover:bg-cyan-600"
