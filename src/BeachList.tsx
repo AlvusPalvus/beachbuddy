@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { getDate } from "./functions/getDate";
-import BeachCard from "./BeachCard";
+import BeachCard from "./components/BeachCard";
 import { UserOptions } from "./types/beachTypes";
 import { useParams } from "react-router-dom";
 import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
-import ReduxDemo from "./ReduxDemo";
+import ReduxDemo from "./components/ReduxDemo";
 
 type Props = {};
 

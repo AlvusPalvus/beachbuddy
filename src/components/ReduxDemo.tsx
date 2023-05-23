@@ -1,10 +1,10 @@
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { 
         setInputAddress,
         setOrigin,
         setTravelMode
-} from "./features/userOptions/userOptionsSlice";
-import { LatLngLiteral, TravelMode } from "./types/googleTypes";
+} from "../features/userOptions/userOptionsSlice";
+import { LatLngLiteral, TravelMode } from "../types/googleTypes";
 
 const ReduxDemo = () => {
     // Used to dispatch actions to reducer (modify state)

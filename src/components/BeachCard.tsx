@@ -1,6 +1,6 @@
 import { BsCheck, BsX } from "react-icons/bs";
 import { WeatherIcon } from "./WeatherIcon";
-import { Beach } from "./types/beachTypes";
+import { Beach } from "../types/beachTypes";
 import { FiWind } from "react-icons/fi";
 import { MdAccessibleForward } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
