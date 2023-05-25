@@ -48,7 +48,7 @@ function useFetchAllBeaches({ setIsPending, setError, userOptions }: Props) {
         fetchAllData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return beaches;
+    return { beaches, setBeaches };
 }
 
 export default useFetchAllBeaches;

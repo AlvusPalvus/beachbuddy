@@ -5,6 +5,7 @@ import { UserOptions } from "./types/beachTypes";
 import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
 import { useAppSelector } from "./app/hooks";
 import { Loader } from "./components/Loader";
+import { sortBeaches } from "./functions/sortBeaches";
 
 type Props = {};
 
@@ -16,11 +17,19 @@ const BeachList = (props: Props) => {
         (state) => state.userOptions
     );
 
-    const beachList = useFetchAllBeaches({
+    const { beaches: beachList, setBeaches } = useFetchAllBeaches({
         setIsPending,
         setError,
         userOptions,
     });
+
+    const handleSort = (order: string) => {
+        if (beachList !== undefined) {
+            console.log('sorting')
+            const sortedBeachList = sortBeaches(beachList, order);
+            setBeaches(sortedBeachList);
+        }
+    }
 
     return (
         <div className="beach-list font-default flex flex-col items-center mb-20">
@@ -32,7 +41,9 @@ const BeachList = (props: Props) => {
                 <Loader />
             )}
             {error && <p>{error}</p>}
-
+            <button 
+                    onClick = { () => { handleSort("accessibility") } } 
+            >Sortera!</button>
             {!isPending && (
                 <div className="beach-grid grid-cols-3">
                     {beachList &&

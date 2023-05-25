@@ -41,11 +41,11 @@ export const sortBeaches = (beachesToSort: Beach[], order: string) => {
             if (
                 a.info.accessibility === false && b.info.accessibility === true
             ) {
-                return -1;
+                return 1;
             } else if (
                 a.info.accessibility === true && b.info.accessibility === false
             ) {
-                return 1;
+                return -1;
             } else {
                 return 0;
             }
