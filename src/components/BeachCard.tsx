@@ -7,6 +7,7 @@ import { RiPinDistanceFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { setChosenBeach } from "../features/userOptions/userOptionsSlice";
+import { motion } from 'framer-motion';
 
 type Props = {
     beach: Beach;
@@ -18,7 +19,11 @@ const BeachCard = (props: Props) => {
         dispatch(setChosenBeach(props.beach));
     };
     return (
-        <div className="beach-card flex flex-col items-center justify-between text-white bg-dkblue rounded-xl">
+        <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="beach-card flex flex-col items-center justify-between text-white bg-dkblue rounded-xl"
+        >
             <h4 className="beach-name text-base pt-6">
                 {props.beach.info.name}
             </h4>
@@ -61,7 +66,7 @@ const BeachCard = (props: Props) => {
             >
                 Hitta hit
             </Link>
-        </div>
+        </motion.div>
     );
 };
 

@@ -23,9 +23,9 @@ const BeachList = (props: Props) => {
     });
 
     return (
-        <div className="beach-list font-default flex flex-col items-center">
-            <h2 className="text-xl text-dkblue">Dina badplatsförslag</h2>
-            <h3 className="text-lbold text-mdblue">
+        <div className="beach-list font-default flex flex-col items-center mb-20">
+            <h2 className="text-xl text-dkblue mt-2">Dina badplatsförslag</h2>
+            <h3 className="text-lbold text-mdblue mt-1 mb-14">
                 {today.day} {today.date}, {today.time}
             </h3>
             {isPending && (

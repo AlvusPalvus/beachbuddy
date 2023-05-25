@@ -2,7 +2,7 @@ import { easeOut, motion } from 'framer-motion';
 import { TbBallVolleyball } from 'react-icons/tb'
 
 const animate = {
-    y: -70
+    y: -80
 }
 
 const bounceTransition = {
@@ -19,7 +19,7 @@ export const Loader = () => {
         <motion.div 
             transition={bounceTransition}
             animate={animate}
-            className="text-dkblue mt-20"
+            className="text-dkblue mt-48"
         >
             <TbBallVolleyball size={50}/>
         </motion.div>

@@ -4,7 +4,7 @@ import { ReactComponent as Umbrella } from "../images/umbrella.svg";
 
 export const Header = () => {
     const headerStyles =
-        "header flex items-space-between pb-7 pt-12 text-dkblue justify-between";
+        "header flex items-space-between pb-7 pt-10 text-dkblue justify-between";
     const logoStyles =
         "logo flex flex-col items-center text-basebold leading-5 ml-20";
 
