@@ -2,16 +2,19 @@ import { BsCheck, BsX } from "react-icons/bs";
 import { WeatherIcon } from "./WeatherIcon";
 import { Beach } from "../types/beachTypes";
 import { FiWind } from "react-icons/fi";
-import { MdAccessibleForward } from "react-icons/md";
+import { MdAccessibleForward, MdPedalBike } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { setChosenBeach } from "../features/userOptions/userOptionsSlice";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 type Props = {
     beach: Beach;
 };
+
+const buttonStyles =
+    "beach-button bg-midnight rounded-b-xl justify-self-stretch flex flex-row items-center justify-center hover:bg-teal transition-color duration-300";
 
 const BeachCard = (props: Props) => {
     const dispatch = useAppDispatch();
@@ -19,7 +22,7 @@ const BeachCard = (props: Props) => {
         dispatch(setChosenBeach(props.beach));
     };
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="beach-card flex flex-col items-center justify-between text-white bg-dkblue rounded-xl"
@@ -60,11 +63,11 @@ const BeachCard = (props: Props) => {
                 </div>
             </div>
             <Link
-                className="beach-button bg-midnight rounded-b-xl justify-self-stretch"
+                className={buttonStyles}
                 to={"/badplatser/" + props.beach.info.name}
                 onClick={handleClick}
             >
-                Hitta hit
+                <MdPedalBike className="mr-2" size={18} /> Hitta hit
             </Link>
         </motion.div>
     );

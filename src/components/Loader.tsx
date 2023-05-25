@@ -19,7 +19,7 @@ export const Loader = () => {
         <motion.div 
             transition={bounceTransition}
             animate={animate}
-            className="text-dkblue mt-48"
+            className="text-dkblue mt-56"
         >
             <TbBallVolleyball size={50}/>
         </motion.div>
