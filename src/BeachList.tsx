@@ -4,6 +4,7 @@ import BeachCard from "./components/BeachCard";
 import { UserOptions } from "./types/beachTypes";
 import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
 import { useAppSelector } from "./app/hooks";
+import { Loader } from "./components/Loader";
 
 type Props = {};
 
@@ -28,7 +29,7 @@ const BeachList = (props: Props) => {
                 {today.day} {today.date}, {today.time}
             </h3>
             {isPending && (
-                <div className="loading-indicator">Laddar badplatser...</div>
+                <Loader />
             )}
             {error && <p>{error}</p>}
 

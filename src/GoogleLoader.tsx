@@ -1,5 +1,6 @@
 import { useLoadScript } from "@react-google-maps/api";
 import { ReactNode } from "react";
+import { Loader } from "./components/Loader";
 
 type Props = {
     children: ReactNode;
@@ -11,7 +12,7 @@ const GoogleLoader = ({ children }: Props) => {
         libraries: ["places"],
     });
     if (!isLoaded) {
-        return <div>Lodaing...</div>;
+        return <Loader />;
     }
     return <div>{children}</div>;
 };
