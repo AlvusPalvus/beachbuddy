@@ -6,7 +6,8 @@ import useFetchAllBeaches from "./hooks/useFetchAllBeaches";
 import { useAppSelector } from "./app/hooks";
 import { Loader } from "./components/Loader";
 import { SortingMenu } from "./components/SortingMenu";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { ToTopButton } from "./components/ToTopButton";
 
 type Props = {};
 
@@ -35,7 +36,7 @@ const BeachList = (props: Props) => {
             )}
             {error && <p>{error}</p>}
             {!isPending && (
-                <div className="flex flex-row">
+                <div className="flex flex-row justify-center">
                     <SortingMenu beachList={beachList} setBeaches={setBeaches} />
                     <motion.div 
                         className="beach-grid grid-cols-3"
@@ -47,7 +48,10 @@ const BeachList = (props: Props) => {
                                 <BeachCard beach={item} key={i} />
                             ))
                         }
-                    </motion.div>                   
+                    </motion.div>
+                    <div className="self-end ml-7">
+                        <ToTopButton />
+                    </div>
                 </div>
             )}
         </div>
