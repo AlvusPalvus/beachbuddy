@@ -90,6 +90,7 @@ export const fetchTravelTime = (
 
                         setTimeout(async function () {
                             const indexNext = index + 1;
+                            console.log(index)
 
                             const result = await fetchTravelTime(
                                 destination,
