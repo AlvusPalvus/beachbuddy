@@ -1,7 +1,12 @@
-import { 
-        BsCloudHazeFill, BsFillCloudDrizzleFill, BsFillCloudLightningRainFill, 
-        BsFillCloudSnowFill, BsFillCloudSunFill, BsFillCloudsFill, BsSunFill 
-    } from "react-icons/bs";
+import {
+    BsCloudHazeFill,
+    BsFillCloudDrizzleFill,
+    BsFillCloudLightningRainFill,
+    BsFillCloudSnowFill,
+    BsFillCloudSunFill,
+    BsFillCloudsFill,
+    BsSunFill,
+} from "react-icons/bs";
 
 type Props = {
     symbol: number;
@@ -10,10 +15,10 @@ type Props = {
 // Categorize weather based on SMHI weather symbol data
 const categorizeWeather = (symbol: number) => {
     let category = 0;
-    switch(symbol) {
+    switch (symbol) {
         // Sunny
         case 1:
-        case 2: 
+        case 2:
             category = 1;
             break;
         // Partly cloudy
@@ -52,7 +57,7 @@ const categorizeWeather = (symbol: number) => {
             break;
         // Thunder
         case 11:
-        case 21: 
+        case 21:
             category = 6;
             break;
         // Fog
@@ -61,20 +66,32 @@ const categorizeWeather = (symbol: number) => {
             break;
     }
     return category;
-}
+};
 
 export const WeatherIcon = (props: Props) => {
     const weatherCategory = categorizeWeather(props.symbol);
 
-    return(
+    return (
         <div>
-            {weatherCategory === 1 && <BsSunFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 2 && <BsFillCloudSunFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 3 && <BsFillCloudsFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 4 && <BsFillCloudDrizzleFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 5 && <BsFillCloudSnowFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 6 && <BsFillCloudLightningRainFill size={70} color="#E5F3F1" />}
-            {weatherCategory === 7 && <BsCloudHazeFill size={70} color="#E5F3F1" />}
+            {weatherCategory === 1 && <BsSunFill size={55} color="#E5F3F1" />}
+            {weatherCategory === 2 && (
+                <BsFillCloudSunFill size={70} color="#E5F3F1" />
+            )}
+            {weatherCategory === 3 && (
+                <BsFillCloudsFill size={70} color="#E5F3F1" />
+            )}
+            {weatherCategory === 4 && (
+                <BsFillCloudDrizzleFill size={70} color="#E5F3F1" />
+            )}
+            {weatherCategory === 5 && (
+                <BsFillCloudSnowFill size={70} color="#E5F3F1" />
+            )}
+            {weatherCategory === 6 && (
+                <BsFillCloudLightningRainFill size={70} color="#E5F3F1" />
+            )}
+            {weatherCategory === 7 && (
+                <BsCloudHazeFill size={70} color="#E5F3F1" />
+            )}
         </div>
     );
-}
+};

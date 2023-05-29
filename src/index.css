@@ -26,11 +26,10 @@ code {
     flex-direction: column;
 }
 .beach-grid {
-    width: 65vw;
+    width: 82vw;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1em;
-    gap: 2em;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5em;
 }
 .beach-info-box {
     display: grid;
@@ -57,11 +56,17 @@ code {
 
 @media only screen and (max-width: 85em) {
     .beach-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media only screen and (max-width: 60em) {
+    .beach-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media only screen and (max-width: 40em) {
     .beach-grid {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }

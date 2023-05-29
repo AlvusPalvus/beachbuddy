@@ -12,10 +12,10 @@ module.exports = {
                 teal: "#3EC0A9",
             },
             fontSize: {
-                sm: '0.875em', // 14px
-                base: ['1.125em', {
+                sm: '0.85em',
+                base: ['1em', {
                     fontWeight: 600,
-                }], // 18px
+                }],
                 l: '1.25em', // 20px
                 lbold: ['1.25em', {
                     fontWeight: 700,
