@@ -20,7 +20,6 @@ type Props = {
 const DetailedMapCard = ({ beach }: Props) => {
     const userPosition = useAppSelector((state) => state.userOptions.origin);
     let centerLat = 0;
-    const diffLat = userPosition.lat - beach.info.position.lat;
     if (userPosition.lat > beach.info.position.lat) {
         centerLat =
             userPosition.lat - (userPosition.lat - beach.info.position.lat) / 2;

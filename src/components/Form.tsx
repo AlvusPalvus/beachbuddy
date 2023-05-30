@@ -9,8 +9,6 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { TravelMode } from "../types/googleTypes";
 import { Link } from "react-router-dom";
 
-type Props = {};
-
 const Form = () => {
     const [error, setError] = useState<string>("");
     const [selectedOption, setSelectedOption] = useState<string>(useAppSelector((state) => state.userOptions.travelMode));
