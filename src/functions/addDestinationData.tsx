@@ -55,6 +55,8 @@ const addDestinationData = async ({
     return beachList;
 };
 
+const runAgain = () => {};
+
 export const fetchTravelTime = (
     origin: LatLngLiteral,
     destination: LatLngLiteral,
