@@ -5,6 +5,7 @@ import { BsBicycle, BsCheck, BsX } from "react-icons/bs";
 import { BiWalk } from "react-icons/bi";
 import { FaWind } from "react-icons/fa"
 import { MdAccessibleForward, MdOutlineDirectionsCar, MdOutlineDirectionsTransitFilled } from "react-icons/md";
+import MapLoader from "./MapLoader";
 
 type Props = {
     beach: Beach;
@@ -13,12 +14,14 @@ type Props = {
 const DetailedMapCard = (props: Props) => {
     return (
         <div className="flex flex-row">
-            <div className="flex flex-col bg-dkblue p-10">
+            <div className="flex flex-col bg-dkblue p-14 pb-13">
                 <div className="flex flex-col">
                     {props.beach.weather &&
-                        <div className="self-center">
-                            <WeatherIcon symbol={props.beach.weather?.weatherSymbol} />
-                            <p className="beach-temperature text-[1.5625em] font-semibold text-teal pt-4 pb-3.5">
+                        <div className="self-center flex flex-col">
+                            <div className="self-center">
+                                <WeatherIcon symbol={props.beach.weather?.weatherSymbol} />
+                            </div>
+                            <p className="beach-temperature text-[1.5625em] font-semibold text-teal pt-4 pb-7">
                                 {props.beach.weather?.temperature} °C
                             </p>
                         </div>
@@ -60,9 +63,8 @@ const DetailedMapCard = (props: Props) => {
                         </div>
                     }
                 </div>
-
             </div>
-
+            <MapLoader />
         </div>
     );
 };
