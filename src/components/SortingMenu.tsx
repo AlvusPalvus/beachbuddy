@@ -11,15 +11,15 @@ import { AnimatePresence, motion } from "framer-motion";
 type Props = {
     beachList?: Beach[];
     setBeaches: Function;
-};
+}
 
 export const SortingMenu = (props: Props) => {
     const [showMenu, setShowMenu] = useState(false);
     const dispatch = useAppDispatch();
 
     // Styles
-    const buttonStyles = "flex items-center justify-center rounded-full mb-3 text-lgblue bg-midnight border-2 border-color-lgblue";
-    const iconStyles = "p-5";
+    const buttonStyles = "flex items-center justify-center rounded-full mb-2 text-lgblue bg-midnight border-2 border-color-lgblue";
+    const iconStyles = "p-4";
 
     const toggleMenu = () => {
         if (!showMenu) {
@@ -43,17 +43,17 @@ export const SortingMenu = (props: Props) => {
                 {!showMenu && (
                     <button
                         onClick={toggleMenu}
-                        className={buttonStyles + " " + buttonStyles}
+                        className={buttonStyles}
                     >
-                        <BsSortDown size={60} className={iconStyles} />
+                        <BsSortDown size={55} className={iconStyles} />
                     </button>
                 )}
                 {showMenu && (
                     <button
                     onClick={toggleMenu}
-                    className={buttonStyles + " " + buttonStyles}
+                    className={buttonStyles}
                     >
-                        <CgClose size={60} className={iconStyles} />
+                        <CgClose size={55} className={iconStyles} />
                     </button>
                 )}
             </div>

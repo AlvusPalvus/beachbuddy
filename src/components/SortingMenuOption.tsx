@@ -15,10 +15,10 @@ export const SortingMenuOption = (props: Props) => {
     );
 
     // Styles
-    const buttonStyles = "flex items-center justify-center rounded-full mb-3";
+    const buttonStyles = "flex items-center justify-center rounded-full mb-2";
     const activeButtonStyles = "text-lgblue bg-midnight border-2 border-color-lgblue";
     const inactiveButtonStyles = "text-midnight border-2 border-midnight";
-    const iconStyles = "p-5";
+    const iconStyles = "p-4";
 
     return (
         <div>
@@ -26,20 +26,20 @@ export const SortingMenuOption = (props: Props) => {
                 <button onClick={() => {props.onClickFunction(props.type)}}
                         className={activeButtonStyles + " " + buttonStyles}
                 >
-                    {props.type === "distance" && <RiPinDistanceFill size={60} className={iconStyles} />}
-                    {props.type === "accessibility" && <MdAccessibleForward size={60} className={iconStyles} />}
-                    {props.type === "sun" && <BsSunFill size={60} className={iconStyles} />}
-                    {props.type === "wind" && <FiWind size={60} className={iconStyles} />}
+                    {props.type === "distance" && <RiPinDistanceFill size={55} className={iconStyles} />}
+                    {props.type === "accessibility" && <MdAccessibleForward size={55} className={iconStyles} />}
+                    {props.type === "sun" && <BsSunFill size={55} className={iconStyles} />}
+                    {props.type === "wind" && <FiWind size={55} className={iconStyles} />}
                 </button>
             }
             {props.type !== activeOrder && 
                 <button onClick={() => {props.onClickFunction(props.type)}}
                         className={inactiveButtonStyles + " " + buttonStyles}
                 >
-                    {props.type === "distance" && <RiPinDistanceFill size={60} className={iconStyles} />}
-                    {props.type === "accessibility" && <MdAccessibleForward size={60} className={iconStyles} />}
-                    {props.type === "sun" && <BsSunFill size={60} className={iconStyles} />}
-                    {props.type === "wind" && <FiWind size={60} className={iconStyles} />}
+                    {props.type === "distance" && <RiPinDistanceFill size={55} className={iconStyles} />}
+                    {props.type === "accessibility" && <MdAccessibleForward size={55} className={iconStyles} />}
+                    {props.type === "sun" && <BsSunFill size={55} className={iconStyles} />}
+                    {props.type === "wind" && <FiWind size={55} className={iconStyles} />}
                 </button>
             }
         </div>

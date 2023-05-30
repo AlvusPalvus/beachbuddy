@@ -27,10 +27,10 @@ const BeachDetails = (props: Props) => {
             </h3>
             {beach && <DetailedMapCard beach={beach} />}
             <div className="w-[65vw] m-3">
-                <Link to={"/badplatser"} className="self-start w-72 py-4 px-7 pr-9 justify-center align-center bg-midnight flex flex-row text-white font-semibold rounded-full hover:bg-teal focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-color duration-300" 
+                <Link to={"/badplatser"} className="self-start w-56 pr-2 py-3.5 justify-center align-center bg-midnight flex flex-row text-white text-sm rounded-full hover:bg-teal focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-color duration-300" 
                 >
                     <BsArrowLeft className="mr-3" size={23} />
-                    Tillbaka till startsidan
+                    Tillbaka till listan
                 </Link>
             </div>
         </div>

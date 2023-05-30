@@ -18,10 +18,10 @@ function App() {
                 surfa
                 <br className="md:block" /> eller bara äta en riktigt god glass!
             </h2>
-            <div className="container-lg bg-dkblue h-96 min-h-0 md:min-h-full rounded-xl overflow-clip">
+            <div className="container-lg bg-dkblue w-[65vw] h-96 min-h-0 md:min-h-full rounded-xl overflow-clip">
                 <div className="flex h-full flex-row">
                     <Form />
-                    <div className="flew bg-black w-1/2">
+                    <div className="flex bg-black w-2/3">
                         <MapLoader centerPos={userPosition} />
                     </div>
                 </div>
