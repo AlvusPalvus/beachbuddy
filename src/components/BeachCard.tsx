@@ -2,16 +2,19 @@ import { BsCheck, BsX } from "react-icons/bs";
 import { WeatherIcon } from "./WeatherIcon";
 import { Beach } from "../types/beachTypes";
 import { FiWind } from "react-icons/fi";
-import { MdAccessibleForward } from "react-icons/md";
+import { MdAccessibleForward, MdPedalBike } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { setChosenBeach } from "../features/userOptions/userOptionsSlice";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 type Props = {
     beach: Beach;
 };
+
+const buttonStyles =
+    "beach-button bg-midnight rounded-b-xl justify-self-stretch flex flex-row items-center justify-center hover:bg-teal transition-color duration-300";
 
 const BeachCard = (props: Props) => {
     const dispatch = useAppDispatch();
@@ -19,7 +22,7 @@ const BeachCard = (props: Props) => {
         dispatch(setChosenBeach(props.beach));
     };
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="beach-card flex flex-col items-center justify-between text-white bg-dkblue rounded-xl"
@@ -27,14 +30,14 @@ const BeachCard = (props: Props) => {
             <h4 className="beach-name text-base pt-6">
                 {props.beach.info.name}
             </h4>
-            <p className="beach-temperature text-[1.5625em] font-semibold text-teal pt-4 pb-3.5">
+            <p className="beach-temperature text-[1.32em] font-semibold text-teal pt-4 pb-3.5">
                 {props.beach.weather?.temperature} °C
             </p>
             {props.beach.weather?.weatherSymbol && (
                 <WeatherIcon symbol={props.beach.weather?.weatherSymbol} />
             )}
             <hr className="card-divider my-5" />
-            <div className="beach-info-box mb-4">
+            <div className="beach-info-box mb-5">
                 <div className="beach-info-icon-group">
                     <FiWind size={23} color="#6291BC" />
                     <p className="text-sm pt-1">
@@ -42,13 +45,13 @@ const BeachCard = (props: Props) => {
                     </p>
                 </div>
                 <div className="beach-info-icon-group">
-                    <MdAccessibleForward size={23} color="#6291BC" />
+                    <MdAccessibleForward size={21} color="#6291BC" />
                     <div className="pt-1">
                         {props.beach.info.accessibility === true && (
-                            <BsCheck size={24} />
+                            <BsCheck size={22} />
                         )}
                         {props.beach.info.accessibility === false && (
-                            <BsX size={25} />
+                            <BsX size={23} />
                         )}
                     </div>
                 </div>
@@ -60,11 +63,11 @@ const BeachCard = (props: Props) => {
                 </div>
             </div>
             <Link
-                className="beach-button bg-midnight rounded-b-xl justify-self-stretch"
+                className={buttonStyles}
                 to={"/badplatser/" + props.beach.info.name}
                 onClick={handleClick}
             >
-                Hitta hit
+                <MdPedalBike className="mr-2" size={18} /> Hitta hit
             </Link>
         </motion.div>
     );
