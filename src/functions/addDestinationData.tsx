@@ -29,6 +29,23 @@ const addDestinationData = async ({
                     distance: formattedKm,
                 };
             } catch (error) {
+                if (error === "OVER_QUERY_LIMIT") {
+                    console.log("query limit reached");
+                    setTimeout(async () => {
+                        const res = await fetchTravelTime(
+                            beach.info.position,
+                            userOptions.origin,
+                            userOptions.travelMode,
+                            1
+                        );
+                        const formattedKm = res?.km.replace(",", ".");
+                        beach.travelInfo = {
+                            travelMode: userOptions.travelMode,
+                            travelTime: res?.time,
+                            distance: formattedKm,
+                        };
+                    }, 2000);
+                }
                 setMapsError("Kunde inte hämta distans på grund av: ", error);
             }
             return beach;
@@ -86,20 +103,8 @@ export const fetchTravelTime = (
                     } else if (
                         status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
                     ) {
-                        // VET EJ OM DETTA FUNKAR, lyckas inte framkalla errorn...
-
-                        setTimeout(async function () {
-                            const indexNext = index + 1;
-                            console.log(index)
-
-                            const result = await fetchTravelTime(
-                                destination,
-                                origin,
-                                travelMode,
-                                indexNext
-                            );
-                            resolve(result);
-                        }, 1000);
+                        console.log("EROORORORO");
+                        reject("OVER_QUERY_LIMIT");
                     } else if (
                         status === google.maps.DirectionsStatus.ZERO_RESULTS
                     ) {

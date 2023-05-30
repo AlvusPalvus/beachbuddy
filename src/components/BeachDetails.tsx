@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../app/hooks";
 import { getDate } from "../functions/getDate";
-import MapLoader from "./MapLoader";
 import { useEffect } from "react";
 import DetailedMapCard from "./DetailedMapCard";
 
