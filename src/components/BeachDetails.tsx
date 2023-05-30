@@ -20,13 +20,13 @@ const BeachDetails = (props: Props) => {
     }, []);
 
     return (
-        <div className="beach-list font-default flex flex-col items-center mb-10">
-            <h2 className="text-xl text-dkblue mt-1">{beach?.info.name}</h2>
-            <h3 className="text-lbold text-mdblue mt-1 mb-5">
+        <div className="beach-list font-default flex flex-col items-center mb-14">
+            <h2 className="text-xl text-dkblue mt-2">{beach?.info.name}</h2>
+            <h3 className="text-lbold text-mdblue mt-1 mb-8">
                 {today.day} {today.date}, {today.time}
             </h3>
             {beach && <DetailedMapCard beach={beach} />}
-            <div className="w-[65vw] m-3">
+            <div className="w-[65vw] m-3 mt-5">
                 <Link to={"/badplatser"} className="self-start w-56 pr-2 py-3.5 justify-center align-center bg-midnight flex flex-row text-white text-sm rounded-full hover:bg-teal focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-color duration-300" 
                 >
                     <BsArrowLeft className="mr-3" size={23} />
