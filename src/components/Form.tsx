@@ -82,8 +82,6 @@ const Form = () => {
                     
                     <div className="flex p-3 gap-x-4 pb-6"> 
                         <div className="bg-dkblue h-12 w-2/3">
-                       
-                            
                         <input className="placeholder:italic placeholder:text-slate-400 block bg-dkblue w-full border border-slate-300 rounded-full py-2 pl-9 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:text-white sm:text-sm text-white" 
                         placeholder="Sök på en adress..." 
                         type="text" 
@@ -93,7 +91,6 @@ const Form = () => {
                     onChange={handleAddressInputChange}
                 />
                 {error && <p>{error}</p>}
-                     
                         </div>
                         <div className=" w-24">
                         <button className="py-2 w-full h-12 bg-lgblue text-dkblue font-semibold rounded-full shadow-md hover:bg-midnight hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" 
@@ -106,7 +103,6 @@ const Form = () => {
                 <label className="text-white" htmlFor="travelMode">
                     Hur vill du resa?
                 </label>
-                   
                     <div className="flex p-3 gap-x-6 pb-10" >
                         <div className="h-12 w-1/4">
                             <div className="flex items-center mb-4">
@@ -119,7 +115,6 @@ const Form = () => {
                             </div>
                         </div>
 
- 
                         <div className="h-12 w-full">
                             <div className="flex items-center mb-4">
                             <input checked={selectedOption === "TRANSIT"} onChange={handleInputChange} id="kollektivt" type="radio" value={google.maps.TravelMode.TRANSIT} name="options" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>

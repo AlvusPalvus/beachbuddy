@@ -1,6 +1,7 @@
 import { MdSunny } from "react-icons/md";
 import { ReactComponent as Waves } from "../images/wave.svg";
 import { ReactComponent as Umbrella } from "../images/umbrella.svg";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
     const headerStyles =
@@ -11,10 +12,10 @@ export const Header = () => {
     return (
         <div className={headerStyles}>
             <div className="navbar flex flex-row justify-between items-center">
-                <div className={logoStyles}>
+                <Link to={"/"} className={logoStyles}>
                     <span>BEACH</span>
                     <span>BUDDY</span>
-                </div>
+                </Link>
                 <div className="header-icons flex flex-row items-center justify-center">
                     <Waves className="mx-5" />
                     <MdSunny size={35} className="mx-4" />
