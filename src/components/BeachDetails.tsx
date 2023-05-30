@@ -17,7 +17,7 @@ const BeachDetails = (props: Props) => {
         if (beach === undefined || beach.info.name === "") {
             navigator("/");
         }
-    });
+    }, []);
 
     return (
         <div className="beach-list font-default flex flex-col items-center mb-20">
@@ -27,7 +27,6 @@ const BeachDetails = (props: Props) => {
             </h3>
             {beach && <DetailedMapCard beach={beach} />}
             <p>Tid från din position: {beach?.travelInfo?.travelTime}</p>
-            <MapLoader destination={beach?.info.position} />
         </div>
     );
 };
