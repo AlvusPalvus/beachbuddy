@@ -4,15 +4,18 @@ import { LatLngLiteral } from "../types/googleTypes";
 import { useAppSelector } from "../app/hooks";
 
 type Props = {
+    centerPos: LatLngLiteral;
+    zoom?: number;
     destination?: LatLngLiteral;
 };
 
 const MapLoader = (props: Props) => {
-    const userPosition = useAppSelector((state) => state.userOptions.origin);
+    const centerPos = props.centerPos;
+    const userPos = useAppSelector((state) => state.userOptions.origin);
 
     let center = useMemo(
-        () => ({ lat: userPosition.lat, lng: userPosition.lng }),
-        [userPosition]
+        () => ({ lat: userPos.lat, lng: userPos.lng }),
+        [userPos, props.centerPos]
     );
 
     if (process.env.REACT_APP_GOOGLE_MAPS_API_KEY === undefined) {
@@ -20,25 +23,28 @@ const MapLoader = (props: Props) => {
         return <div>mapLoader failed</div>;
     }
 
-    return Map(center, props.destination);
+    return Map(userPos, centerPos, props.destination, props.zoom);
 };
 
-function Map(center: LatLngLiteral, destination?: LatLngLiteral) {
+function Map(
+    userPosition: LatLngLiteral,
+    center: LatLngLiteral,
+    destination?: LatLngLiteral,
+    zoom?: number
+) {
     var iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+    var iconUrl = "/beachIcon.png"; //"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
 
     return (
         <>
             <GoogleMap
                 mapContainerClassName="mapContainer"
-                zoom={10}
+                zoom={zoom ? zoom : 10}
                 center={center}
             >
-                <Marker position={center}></Marker>
+                <Marker position={userPosition} icon={"/homeIcon.png"}></Marker>
                 {destination && (
-                    <Marker
-                        position={destination}
-                        icon={iconBase + "parking_lot_maps.png"}
-                    ></Marker>
+                    <Marker position={destination} icon={iconUrl}></Marker>
                 )}
             </GoogleMap>
         </>
