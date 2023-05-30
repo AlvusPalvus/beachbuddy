@@ -1,3 +1,7 @@
+# About this project
+This application was created as part of the course Application Development for Internet 2023. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
