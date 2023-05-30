@@ -29,8 +29,13 @@ code {
     width: 82vw;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5em;
+    gap: 1.2em;
 }
+
+.navbar {
+    width: 82vw;
+}
+
 .beach-info-box {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
