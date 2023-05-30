@@ -5,7 +5,7 @@ import { useAppSelector } from "./app/hooks";
 function App() {
     const userPosition = useAppSelector((state) => state.userOptions.origin);
     return (
-        <div className="App flex flex-col gap-4 max-w-4xl m-auto pb-10">
+        <div className="App flex flex-col gap-4 max-w-4xl m-auto pb-10 items-center">
             <h1 className="text-4xl font-bold text-dkblue text-center pb-2">
                 Din guide till Umeås <span className="underline">bästa</span> badplatser
             </h1>
@@ -14,7 +14,7 @@ function App() {
                 surfa
                 <br className="md:block" /> eller bara äta en riktigt god glass!
             </h2>
-            <div className="container-lg bg-dkblue w-[65vw] h-96 min-h-0 md:min-h-full rounded-xl overflow-clip">
+            <div className="bg-dkblue w-[65vw] h-96 min-h-0 md:min-h-full rounded-xl overflow-clip">
                 <div className="flex h-full flex-row">
                     <Form />
                     <div className="flex bg-black w-2/3">
