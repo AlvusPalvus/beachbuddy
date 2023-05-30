@@ -82,7 +82,7 @@ const Form = () => {
             <div className="flex p-3 gap-x-4 pb-7">
                 <div className="bg-dkblue h-12 w-2/3">
                     <input
-                        className=" placeholder:text-slate-400 block bg-dkblue w-full border border-slate-300 rounded-full py-2 pl-9 pr-3 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:text-white sm:text-sm text-white"
+                        className=" placeholder:text-slate-400 block bg-dkblue w-full border border-slate-300 rounded-full py-2 px-4 h-12 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:text-white sm:text-sm text-white"
                         placeholder="Sök på en adress..."
                         type="text"
                         id="address"
