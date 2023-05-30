@@ -6,7 +6,7 @@ export const Header = () => {
     const headerStyles =
         "header flex flex-row justify-center items-center pb-7 pt-10 text-dkblue";
     const logoStyles =
-        "logo flex flex-col items-center text-basebold leading-5 ml-4";
+        "logo flex flex-col items-center text-basebold leading-5 ml-2";
 
     return (
         <div className={headerStyles}>
