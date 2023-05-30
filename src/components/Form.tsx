@@ -129,9 +129,8 @@ const Form = () => {
 
                     <div className="flex p-3 gap-x-6 justify-center"> 
                         <Link to={"/badplatser"} className="text-center pt-3 pb-2  w-full h-12 bg-lgblue text-dkblue font-semibold rounded-full shadow-md hover:bg-midnight hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        Hitta badplatser
+                            Hitta badplatser
                         </Link>
-                        
                     </div>
                 </form>
         
