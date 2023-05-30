@@ -45,6 +45,10 @@ const addTravelData = async ({
                         distance: formattedKm,
                     };
                 }, 2000);
+            } else if (error === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                //     const time = "Ej tillgängligt";
+                //     const km = "Ej tillgängligt";
+                //     info = { time, km };
             }
             setMapsError("Kunde inte hämta distans på grund av: ", error);
         }
@@ -80,35 +84,43 @@ export const fetchTravelTime = async (
     }
 
     let info: Info = { time: "fel", km: "fel" };
+    try {
+        const service = new google.maps.DirectionsService();
 
-    const service = new google.maps.DirectionsService();
+        await service.route(
+            {
+                origin,
+                destination,
+                travelMode: travelModeGoogle,
+            },
+            (result, status) => {
+                if (status === "OK" && result) {
+                    const duration = result.routes[0].legs[0].duration;
+                    const distance = result.routes[0].legs[0].distance;
+                    const time = duration
+                        ? duration?.text
+                        : "Kunde inte hämtas";
+                    const km = distance ? distance?.text : "Kunde inte hämtas";
 
-    await service.route(
-        {
-            origin,
-            destination,
-            travelMode: travelModeGoogle,
-        },
-        (result, status) => {
-            if (status === "OK" && result) {
-                const duration = result.routes[0].legs[0].duration;
-                const distance = result.routes[0].legs[0].distance;
-                const time = duration ? duration?.text : "Kunde inte hämtas";
-                const km = distance ? distance?.text : "Kunde inte hämtas";
-
-                info = { time, km };
-            } else if (
-                status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
-            ) {
-                console.log("throwing error");
-                throw new Error("OVER_QUERY_LIMIT");
-            } else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
-                const time = "Ej tillgängligt";
-                const km = "Ej tillgängligt";
-                info = { time, km };
+                    info = { time, km };
+                }
+                if (status === "OVER_QUERY_LIMIT") {
+                    console.log("throwing error");
+                    throw new Error("OVER_QUERY_LIMIT");
+                }
             }
+        );
+    } catch (error: any) {
+        if (error.code === "ZERO_RESULTS") {
+            const time = "Ej tillgängligt";
+            const km = "Ej tillgängligt";
+            info = { time, km };
+        } else {
+            console.log(error);
+            throw new Error("test error");
         }
-    );
+    }
+
     return info;
 };
 
