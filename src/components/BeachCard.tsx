@@ -1,11 +1,12 @@
 import { BsCheck, BsX } from "react-icons/bs";
 import { WeatherIcon } from "./WeatherIcon";
-import { Beach } from "../types/beachTypes";
+import { Beach, UserOptions } from "../types/beachTypes";
 import { FiWind } from "react-icons/fi";
-import { MdAccessibleForward, MdPedalBike } from "react-icons/md";
+import { MdAccessibleForward, MdOutlineDirectionsCar, MdOutlineDirectionsTransitFilled, MdPedalBike } from "react-icons/md";
 import { RiPinDistanceFill } from "react-icons/ri";
+import { BiWalk } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setChosenBeach } from "../features/userOptions/userOptionsSlice";
 import { motion } from "framer-motion";
 
@@ -18,9 +19,14 @@ const buttonStyles =
 
 const BeachCard = (props: Props) => {
     const dispatch = useAppDispatch();
+    const userOptions: UserOptions = useAppSelector(
+        (state) => state.userOptions
+    );
+
     const handleClick = () => {
         dispatch(setChosenBeach(props.beach));
     };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -67,7 +73,30 @@ const BeachCard = (props: Props) => {
                 to={"/badplatser/" + props.beach.info.name}
                 onClick={handleClick}
             >
-                <MdPedalBike className="mr-2" size={18} /> Hitta hit
+                {userOptions.travelMode === "BICYCLING" && 
+                    <div className="flex flex-row items-center">
+                        <MdPedalBike className="mr-2" size={18} /> 
+                        Hitta hit
+                    </div>
+                }
+                {userOptions.travelMode === "WALKING" && 
+                    <div className="flex flex-row items-center">
+                        <BiWalk className="mr-2" size={18} /> 
+                        Hitta hit
+                    </div>
+                }
+                {userOptions.travelMode === "DRIVING" && 
+                    <div className="flex flex-row items-center">
+                        <MdOutlineDirectionsCar className="mr-2" size={18} /> 
+                        Hitta hit
+                    </div>
+                }
+                {userOptions.travelMode === "TRANSIT" && 
+                    <div className="flex flex-row items-center">
+                        <MdOutlineDirectionsTransitFilled className="mr-2" size={18} /> 
+                        Hitta hit
+                    </div>
+                }
             </Link>
         </motion.div>
     );
