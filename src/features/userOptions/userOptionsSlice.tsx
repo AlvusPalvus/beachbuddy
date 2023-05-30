@@ -19,7 +19,7 @@ const initialState: UserOptions = {
     travelMode: "BICYCLING",
 };
 
-export const counterSlice = createSlice({
+export const userOptionsSlice = createSlice({
     name: "userOptions",
     initialState,
     reducers: {
@@ -40,7 +40,7 @@ export const counterSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { setInputAddress, setOrigin, setTravelMode, setChosenBeach } =
-    counterSlice.actions;
+    userOptionsSlice.actions;
 
 // Export reducer
-export default counterSlice.reducer;
+export default userOptionsSlice.reducer;
