@@ -1,17 +1,17 @@
 import { RiPinDistanceFill } from "react-icons/ri";
 import { Beach } from "../types/beachTypes";
 import { WeatherIcon } from "./WeatherIcon";
-import { BsBicycle, BsCheck, BsX } from "react-icons/bs";
+import { BsCheck, BsX } from "react-icons/bs";
 import { BiWalk } from "react-icons/bi";
 import { FaWind } from "react-icons/fa";
 import {
     MdAccessibleForward,
     MdOutlineDirectionsCar,
     MdOutlineDirectionsTransitFilled,
+    MdPedalBike,
 } from "react-icons/md";
 import MapLoader from "./MapLoader";
 import { useAppSelector } from "../app/hooks";
-import { LatLngLiteral } from "../types/googleTypes";
 
 type Props = {
     beach: Beach;
@@ -44,8 +44,8 @@ const DetailedMapCard = ({ beach }: Props) => {
     };
 
     return (
-        <div className="flex flex-row w-[82vw] h-fit rounded-xl overflow-clip">
-            <div className="flex flex-col bg-dkblue p-14 pb-13 w-1/3">
+        <div className="flex flex-row w-[65vw] h-fit rounded-xl overflow-clip">
+            <div className="flex flex-col bg-dkblue p-10 pb-13 w-1/4">
                 <div className="flex flex-col">
                     {beach.weather && (
                         <div className="self-center flex flex-col">
@@ -61,16 +61,16 @@ const DetailedMapCard = ({ beach }: Props) => {
                     )}
                     {beach.info && (
                         <div className="flex flex-col justify-start">
-                            <div className="flex flex-row items-center pb-2">
+                            <div className="flex flex-row items-center pb-3">
                                 <RiPinDistanceFill size={20} color="#6291BC" />
                                 <p className="text-sm ml-2 text-lgblue">
                                     {beach.travelInfo?.distance}
                                 </p>
                             </div>
-                            <div className="flex flex-row items-center pb-2">
+                            <div className="flex flex-row items-center pb-3">
                                 {beach.travelInfo?.travelMode ===
                                     "BICYCLING" && (
-                                    <BsBicycle size={22} color="#6291BC" />
+                                    <MdPedalBike size={22} color="#6291BC" />
                                 )}
                                 {beach.travelInfo?.travelMode === "DRIVING" && (
                                     <MdOutlineDirectionsCar
@@ -91,13 +91,13 @@ const DetailedMapCard = ({ beach }: Props) => {
                                     {beach.travelInfo?.travelTime}
                                 </p>
                             </div>
-                            <div className="flex flex-row items-center pb-2">
+                            <div className="flex flex-row items-center pb-3">
                                 <FaWind size={16} color="#6291BC" />
                                 <p className="text-sm ml-2 text-lgblue">
                                     {beach.weather?.windSpeed} m/s
                                 </p>
                             </div>
-                            <div className="flex flex-row items-center pb-2">
+                            <div className="flex flex-row items-center pb-3">
                                 <MdAccessibleForward
                                     size={22}
                                     color="#6291BC"
