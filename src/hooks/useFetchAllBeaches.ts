@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Beach, UserOptions } from "../types/beachTypes";
 import { getBeachData } from "../functions/getBeachData";
 import { addWeatherData } from "../functions/addWeatherData";
-import addDestinationData from "../functions/addDestinationData";
 import { sortBeaches } from "../functions/sortBeaches";
 import addTravelData from "../functions/addTravelData";
 

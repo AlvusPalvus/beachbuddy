@@ -29,10 +29,8 @@ const addTravelData = async ({
                 distance: formattedKm,
             };
         } catch (error) {
-            console.log("HELLO", error);
             if (error === "OVER_QUERY_LIMIT") {
                 console.log("query limit reached");
-
                 setTimeout(async () => {
                     const res = await fetchTravelTime(
                         beach.info.position,
@@ -84,41 +82,34 @@ export const fetchTravelTime = async (
     let info: Info = { time: "fel", km: "fel" };
 
     const service = new google.maps.DirectionsService();
-    try {
-        await service.route(
-            {
-                origin,
-                destination,
-                travelMode: travelModeGoogle,
-            },
-            (result, status) => {
-                if (status === "OK" && result) {
-                    const duration = result.routes[0].legs[0].duration;
-                    const distance = result.routes[0].legs[0].distance;
-                    const time = duration
-                        ? duration?.text
-                        : "Kunde inte hämtas";
-                    const km = distance ? distance?.text : "Kunde inte hämtas";
 
-                    info = { time, km };
-                } else if (
-                    status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
-                ) {
-                    console.log("throwing error");
-                    throw new Error("OVER_QUERY_LIMIT");
-                } else if (
-                    status === google.maps.DirectionsStatus.ZERO_RESULTS
-                ) {
-                    const time = "Ej tillgängligt";
-                    const km = "Ej tillgängligt";
-                    info = { time, km };
-                }
+    await service.route(
+        {
+            origin,
+            destination,
+            travelMode: travelModeGoogle,
+        },
+        (result, status) => {
+            if (status === "OK" && result) {
+                const duration = result.routes[0].legs[0].duration;
+                const distance = result.routes[0].legs[0].distance;
+                const time = duration ? duration?.text : "Kunde inte hämtas";
+                const km = distance ? distance?.text : "Kunde inte hämtas";
+
+                info = { time, km };
+            } else if (
+                status === google.maps.DirectionsStatus.OVER_QUERY_LIMIT
+            ) {
+                console.log("throwing error");
+                throw new Error("OVER_QUERY_LIMIT");
+            } else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                const time = "Ej tillgängligt";
+                const km = "Ej tillgängligt";
+                info = { time, km };
             }
-        );
-        return info;
-    } catch (error) {
-        return info;
-    }
+        }
+    );
+    return info;
 };
 
 export default addTravelData;
