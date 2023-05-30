@@ -38,7 +38,7 @@ export const SortingMenu = (props: Props) => {
     };
 
     return (
-        <div className="mr-7 flex flex-col">
+        <div className="mr-5 flex flex-col">
             <div>
                 {!showMenu && (
                     <button

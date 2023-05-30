@@ -49,7 +49,7 @@ const BeachList = (props: Props) => {
                             ))
                         }
                     </motion.div>
-                    <div className="self-end ml-7">
+                    <div className="self-end ml-5">
                         <ToTopButton />
                     </div>
                 </div>
