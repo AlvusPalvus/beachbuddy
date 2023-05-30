@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userOptionsReducer from '../features/userOptions/userOptionsSlice'
+import sortingReducer from '../features/sorting/sortingSlice'
 
 export const store = configureStore({
     reducer: {
-        userOptions: userOptionsReducer
+        userOptions: userOptionsReducer,
+        sorting: sortingReducer
     },
 })
 
