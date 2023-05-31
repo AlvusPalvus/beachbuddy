@@ -47,7 +47,7 @@ const categorizeWeather = (symbol: number) => {
         case 24:
         case 25:
         case 26:
-        case 37:
+        case 27:
             category = 5;
             break;
         // Thunder
