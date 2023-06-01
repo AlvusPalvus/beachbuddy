@@ -29,6 +29,7 @@ const addTravelData = async ({
                 distance: formattedKm,
             };
         } catch (error) {
+            console.log(error);
             if (error === "OVER_QUERY_LIMIT") {
                 console.log("query limit reached");
                 setTimeout(async () => {
@@ -105,8 +106,8 @@ export const fetchTravelTime = async (
                     info = { time, km };
                 }
                 if (status === "OVER_QUERY_LIMIT") {
-                    console.log("throwing error");
-                    throw new Error("OVER_QUERY_LIMIT");
+                    console.log("throw error");
+                    //throw new Error("OVER_QUERY_LIMIT");
                 }
             }
         );
